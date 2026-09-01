@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>综合应用能力（E类）复习题库</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#0891b2">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="app-header">
+  <h1>综合应用能力（E类）复习题库</h1>
+  <div class="subtitle">医疗卫生类事业单位考试 · 基础医学知识</div>
+  <div class="stats-bar">
+    <div class="stat-item"><span class="num" id="stat-total">0</span><span class="label">总题数</span></div>
+    <div class="stat-item"><span class="num" id="stat-done">0</span><span class="label">已答题</span></div>
+    <div class="stat-item"><span class="num" id="stat-correct">0</span><span class="label">答对</span></div>
+    <div class="stat-item"><span class="num" id="stat-wrong">0</span><span class="label">错题</span></div>
+    <div class="stat-item"><span class="num" id="stat-rate">0%</span><span class="label">正确率</span></div>
+  </div>
+  <div class="header-tools">
+    <button class="tool-btn" id="dark-mode-btn">🌙 暗色</button>
+    <button class="tool-btn" id="settings-btn">⚙ 设置</button>
+    <button class="tool-btn danger-btn" id="header-reset-btn">🔄 重置进度</button>
+  </div>
+</div>
+
+<div class="app-container">
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-drag-handle">
+      <span>📚 目录导航</span>
+      <button class="close-sidebar" id="close-sidebar">✕</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="搜索关键词，如线粒体">
+      <div class="search-results-count" id="search-count"></div>
+    </div>
+    <div id="sidebar-nav"></div>
+    <div class="sidebar-nav-btn fav-btn-sidebar" id="fav-book-btn">⭐ 收藏夹 (<span id="fav-count">0</span>)</div>
+    <div class="sidebar-nav-btn" id="wrong-book-btn">错题本 (<span id="wrong-count">0</span>)</div>
+    <div class="sidebar-nav-btn" id="smart-test-btn">📝 智能组卷</div>
+    <div class="sidebar-nav-btn danger" id="reset-btn">重置进度</div>
+  </div>
+
+  <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" title="打开目录">📋</button>
+
+  <div class="main-content">
+    <div class="mode-bar">
+      <button class="mode-btn active" data-mode="chapter">按考点练习</button>
+      <button class="mode-btn" data-mode="all">全卷混刷</button>
+      <button class="mode-btn" data-mode="random">随机练习</button>
+      <button class="mode-btn" data-mode="wrong">错题重做</button>
+      <button class="mode-btn" data-mode="wrong-drill">错题强化</button>
+      <button class="mode-btn" data-mode="exam">限时模考</button>
+      <button class="mode-btn" data-mode="quickcard">速查卡</button>
+      <button class="mode-btn" data-mode="fav">收藏练习</button>
+    </div>
+
+    <div class="exam-timer-bar" id="exam-timer-bar">
+      <div>
+        <span class="timer-label">⏱ 模考倒计时</span>
+      </div>
+      <div class="timer-display" id="timer-display">00:00</div>
+      <button class="action-btn primary" id="exam-submit-btn" style="padding:6px 16px;font-size:13px">提前交卷</button>
+    </div>
+
+    <div class="kd-switcher" id="kd-switcher"></div>
+    <div class="tag-filter-bar" id="tag-filter-bar"></div>
+
+    <div class="wrong-panel" id="wrong-panel">
+      <h3>错题本 <span class="count" id="wrong-panel-count"></span></h3>
+      <ul class="wrong-list" id="wrong-list"></ul>
+    </div>
+
+    <div class="exam-result-card" id="exam-result-card"></div>
+
+    <div class="progress-dots" id="progress-dots"></div>
+
+    <div id="content-area">
+      <div class="welcome-card" id="welcome-card">
+        <h2>欢迎使用 E类复习题库</h2>
+        <p>从左侧目录选择章节开始练习</p>
+        <div class="welcome-stats">
+          <div class="welcome-stat">
+            <div class="num" id="welcome-total">0</div>
+            <div class="label">已收录题目</div>
+          </div>
+          <div class="welcome-stat">
+            <div class="num">4章</div>
+            <div class="label">已更新章节</div>
+          </div>
+          <div class="welcome-stat">
+            <div class="num">第1篇</div>
+            <div class="label">当前进度</div>
+          </div>
+        </div>
+        <div class="welcome-tip">
+          <strong>💡 使用说明</strong>
+          ① 点击右下角 📋 按钮打开目录导航，选择章节后自动跳转到题目<br>
+          ② 顶部支持8种练习模式：考点练习、全卷混刷、随机练习、错题重做、错题强化、限时模考、速查卡、收藏练习<br>
+          ③ 每题可点击 ☆ 收藏，解析支持展开/收起<br>
+          ④ 目录内搜索栏输入关键词可跨章节搜题，如「线粒体」<br>
+          ⑤ 智能组卷支持薄弱优先/随机/章节均衡三种策略<br>
+          ⑥ 错题强化模式：连续答对2次自动移出错题本，形成闭环<br>
+          ⑦ 右上角设置可调暗色模式、自动跳题、打乱选项等<br>
+          ⑧ 手机端支持左右滑动切题，进度自动保存本地
+        </div>
+      </div>
+
+      <div class="question-card" id="question-card" style="display:none">
+        <div class="breadcrumb" id="breadcrumb"></div>
+        <div class="question-meta" id="question-meta"></div>
+        <div class="question-text" id="question-text"></div>
+        <div id="options-area"></div>
+        <div class="feedback" id="feedback"></div>
+        <div class="action-bar">
+          <button class="action-btn secondary" id="prev-btn">上一题</button>
+          <button class="action-btn primary" id="submit-btn" disabled>提交答案</button>
+          <button class="action-btn secondary" id="next-btn" disabled>下一题</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 设置面板 -->
+<div class="settings-overlay" id="settings-overlay"></div>
+<div class="settings-panel" id="settings-panel">
+  <h3>
+    <span>⚙ 设置</span>
+    <button class="close-btn" id="settings-close">✕</button>
+  </h3>
+  <div class="settings-group">
+    <div class="settings-group-title">做题设置</div>
+    <div class="setting-item">
+      <span>答对后自动跳下一题</span>
+      <div class="toggle-switch" id="toggle-auto-next" data-key="autoNext"></div>
+    </div>
+    <div class="setting-item">
+      <span>自动跳转延迟</span>
+      <select class="setting-select" id="select-auto-delay" data-key="autoDelay">
+        <option value="1000">1秒</option>
+        <option value="1500" selected>1.5秒</option>
+        <option value="2000">2秒</option>
+        <option value="3000">3秒</option>
+      </select>
+    </div>
+    <div class="setting-item">
+      <span>解析默认展开</span>
+      <div class="toggle-switch" id="toggle-explain-expand" data-key="explainExpand"></div>
+    </div>
+    <div class="setting-item">
+      <span>随机打乱选项顺序</span>
+      <div class="toggle-switch" id="toggle-shuffle-opts" data-key="shuffleOpts"></div>
+    </div>
+  </div>
+  <div class="settings-group">
+    <div class="settings-group-title">显示设置</div>
+    <div class="setting-item">
+      <span>暗色模式</span>
+      <div class="toggle-switch" id="toggle-dark-mode" data-key="darkMode"></div>
+    </div>
+    <div class="setting-item">
+      <span>显示题目标签</span>
+      <div class="toggle-switch on" id="toggle-show-tags" data-key="showTags"></div>
+    </div>
+  </div>
+  <div class="settings-group">
+    <div class="settings-group-title">模考设置</div>
+    <div class="setting-item">
+      <span>模考时长</span>
+      <select class="setting-select" id="select-exam-time" data-key="examTime">
+        <option value="600">10分钟</option>
+        <option value="1200" selected>20分钟</option>
+        <option value="1800">30分钟</option>
+        <option value="3600">60分钟</option>
+      </select>
+    </div>
+    <div class="setting-item">
+      <span>模考题量</span>
+      <select class="setting-select" id="select-exam-count" data-key="examCount">
+        <option value="20">20题</option>
+        <option value="50" selected>50题</option>
+        <option value="100">100题</option>
+        <option value="0">全部题目</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- 智能组卷弹窗 -->
+<div class="modal-overlay" id="smart-test-modal">
+  <div class="modal-card">
+    <h3>📝 智能组卷</h3>
+    <div class="modal-option" data-strategy="weak">
+      <input type="radio" name="strategy" value="weak" checked>
+      <div>
+        <strong>薄弱考点优先</strong><br>
+        <small style="color:var(--muted)">优先抽取错题和未做过的题目</small>
+      </div>
+    </div>
+    <div class="modal-option" data-strategy="random">
+      <input type="radio" name="strategy" value="random">
+      <div>
+        <strong>随机组卷</strong><br>
+        <small style="color:var(--muted)">从全部题库随机抽取</small>
+      </div>
+    </div>
+    <div class="modal-option" data-strategy="chapter-balanced">
+      <input type="radio" name="strategy" value="chapter-balanced">
+      <div>
+        <strong>章节均衡</strong><br>
+        <small style="color:var(--muted)">各章节按比例均匀抽取</small>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="action-btn secondary" id="smart-cancel">取消</button>
+      <button class="action-btn primary" id="smart-start">开始组卷</button>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+</body>
+</html>

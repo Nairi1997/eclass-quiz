@@ -1,0 +1,10 @@
+{
+  "name": "综合应用能力（E类）复习题库",
+  "short_name": "E类题库",
+  "description": "医疗卫生类事业单位考试复习题库",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f0f4f8",
+  "theme_color": "#0891b2",
+  "icons": []
+}

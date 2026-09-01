@@ -1,0 +1,1324 @@
+[
+  {
+    "part": "part1",
+    "partTitle": "第一部分 基础医学知识",
+    "open": true,
+    "pians": [
+      {
+        "pian": "pian1",
+        "pianTitle": "第一篇 医学细胞生物学",
+        "open": true,
+        "chapters": [
+          {
+            "ch": "ch1",
+            "title": "第一章 细胞的基本特征",
+            "hasQuestions": true
+          },
+          {
+            "ch": "ch2",
+            "title": "第二章 细胞的结构与功能",
+            "hasQuestions": true
+          },
+          {
+            "ch": "ch3",
+            "title": "第三章 细胞间信息传递",
+            "hasQuestions": true
+          },
+          {
+            "ch": "ch4",
+            "title": "第四章 细胞的基本生命活动",
+            "hasQuestions": true
+          }
+        ]
+      },
+      {
+        "pian": "pian2",
+        "pianTitle": "第二篇 人体解剖学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "p2ch1",
+            "title": "第一章 骨学",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch2",
+            "title": "第二章 关节学",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch3",
+            "title": "第三章 肌学",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch4",
+            "title": "第四章 消化系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch5",
+            "title": "第五章 呼吸系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch6",
+            "title": "第六章 泌尿系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch7",
+            "title": "第七章 生殖系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch8",
+            "title": "第八章 腹膜",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch9",
+            "title": "第九章 心血管系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch10",
+            "title": "第十章 淋巴系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch11",
+            "title": "第十一章 感觉器",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch12",
+            "title": "第十二章 神经系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p2ch13",
+            "title": "第十三章 内分泌系统",
+            "hasQuestions": true
+          }
+        ]
+      },
+      {
+        "pian": "pian3",
+        "pianTitle": "第三篇 组织胚胎学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "p3ch1",
+            "title": "第一章 组织",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p3ch2",
+            "title": "第二章 循环系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p3ch3",
+            "title": "第三章 免疫系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p3ch4",
+            "title": "第四章 皮肤、眼、耳",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p3ch5",
+            "title": "第五章 内分泌系统",
+            "hasQuestions": true
+          },
+          {
+            "ch": "p3ch6",
+            "title": "第六章 消化系统",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p3ch7",
+            "title": "第七章 呼吸系统",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p3ch8",
+            "title": "第八章 泌尿系统",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p3ch9",
+            "title": "第九章 生殖系统",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p3ch10",
+            "title": "第十章 人体胚胎发育概要",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pian4",
+        "pianTitle": "第四篇 生理学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "p4ch1",
+            "title": "第一章 绪论",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch2",
+            "title": "第二章 细胞的基本功能",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch3",
+            "title": "第三章 血液",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch4",
+            "title": "第四章 血液循环",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch5",
+            "title": "第五章 呼吸",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch6",
+            "title": "第六章 消化和吸收",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch7",
+            "title": "第七章 能量代谢与体温",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch8",
+            "title": "第八章 尿的生成和排出",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch9",
+            "title": "第九章 感觉器官的功能",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch10",
+            "title": "第十章 神经系统的功能",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p4ch11",
+            "title": "第十一章 内分泌",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pian5",
+        "pianTitle": "第五篇 生物化学与分子生物学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "p5ch1",
+            "title": "第一章 生物大分子的结构和功能",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p5ch2",
+            "title": "第二章 物质代谢及其调节",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p5ch3",
+            "title": "第三章 遗传信息的传递",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p5ch4",
+            "title": "第四章 医学生物化学",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pian6",
+        "pianTitle": "第六篇 微生物学与免疫学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "p6ch1",
+            "title": "第一章 医学微生物学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p6ch2",
+            "title": "第二章 医学免疫学",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pian7",
+        "pianTitle": "第七篇 医学遗传学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "p7ch1",
+            "title": "第一章 医学遗传学基础",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p7ch2",
+            "title": "第二章 单基因遗传病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p7ch3",
+            "title": "第三章 多基因遗传病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p7ch4",
+            "title": "第四章 染色体遗传病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p7ch5",
+            "title": "第五章 线粒体遗传病",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pian8",
+        "pianTitle": "第八篇 人体寄生虫学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "p8ch1",
+            "title": "第一章 总论",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p8ch2",
+            "title": "第二章 医学原虫学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p8ch3",
+            "title": "第三章 医学蠕虫学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p8ch4",
+            "title": "第四章 医学节肢动物学",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pian9",
+        "pianTitle": "第九篇 药理学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "p9ch1",
+            "title": "第一章 药物代谢动力学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch2",
+            "title": "第二章 药物效应动力学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch3",
+            "title": "第三章 传出神经系统药理学概论",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch4",
+            "title": "第四章 拟胆碱药和抗胆碱药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch5",
+            "title": "第五章 拟肾上腺素药和抗肾上腺素药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch6",
+            "title": "第六章 局部麻醉药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch7",
+            "title": "第七章 镇静催眠药、抗癫痫药及抗惊厥药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch8",
+            "title": "第八章 精神障碍治疗药物",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch9",
+            "title": "第九章 镇痛药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch10",
+            "title": "第十章 利尿药和脱水药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch11",
+            "title": "第十一章 抗高血压药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch12",
+            "title": "第十二章 抗心绞痛药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch13",
+            "title": "第十三章 抗心律失常药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch14",
+            "title": "第十四章 抗心力衰竭药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch15",
+            "title": "第十五章 调节血脂药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch16",
+            "title": "第十六章 解热镇痛抗炎药、抗痛风药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch17",
+            "title": "第十七章 组胺受体拮抗药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch18",
+            "title": "第十八章 肾上腺皮质激素类药物",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch19",
+            "title": "第十九章 胰岛素及口服降血糖药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch20",
+            "title": "第二十章 呼吸系统药物",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch21",
+            "title": "第二十一章 消化系统药物",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch22",
+            "title": "第二十二章 作用于血液及造血系统的药物",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch23",
+            "title": "第二十三章 β内酰胺类抗生素",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch24",
+            "title": "第二十四章 其他抗生素/抗菌药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch25",
+            "title": "第二十五章 抗结核、抗真菌、抗病毒药",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p9ch26",
+            "title": "第二十六章 抗恶性肿瘤药",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pian10",
+        "pianTitle": "第十篇 病理学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "p10ch1",
+            "title": "第一章 细胞、组织的适应和损伤",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch2",
+            "title": "第二章 损伤的修复",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch3",
+            "title": "第三章 局部血液循环障碍",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch4",
+            "title": "第四章 炎症",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch5",
+            "title": "第五章 免疫性疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch6",
+            "title": "第六章 肿瘤",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch7",
+            "title": "第七章 心血管系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch8",
+            "title": "第八章 呼吸系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch9",
+            "title": "第九章 消化系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch10",
+            "title": "第十章 泌尿系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch11",
+            "title": "第十一章 生殖系统和乳腺疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch12",
+            "title": "第十二章 神经系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "p10ch13",
+            "title": "第十三章 感染性疾病",
+            "hasQuestions": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "part": "part2",
+    "partTitle": "第二部分 临床医学知识",
+    "open": false,
+    "pians": [
+      {
+        "pian": "cp1",
+        "pianTitle": "第一篇 诊断学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp1ch1",
+            "title": "第一章 临床常见症状",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp1ch2",
+            "title": "第二章 问诊",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp1ch3",
+            "title": "第三章 体格检查",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp1ch4",
+            "title": "第四章 实验室检查",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp1ch5",
+            "title": "第五章 心电图诊断",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "cp2",
+        "pianTitle": "第二篇 内科学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp2ch1",
+            "title": "第一章 呼吸系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp2ch2",
+            "title": "第二章 循环系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp2ch3",
+            "title": "第三章 消化系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp2ch4",
+            "title": "第四章 泌尿系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp2ch5",
+            "title": "第五章 血液系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp2ch6",
+            "title": "第六章 内分泌系统及代谢性疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp2ch7",
+            "title": "第七章 风湿性疾病",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "cp3",
+        "pianTitle": "第三篇 外科学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp3ch1",
+            "title": "第一章 无菌术",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch2",
+            "title": "第二章 围术期处理",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch3",
+            "title": "第三章 麻醉",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch4",
+            "title": "第四章 营养治疗",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch5",
+            "title": "第五章 水、电解质代谢紊乱和酸碱平衡失调",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch6",
+            "title": "第六章 外科休克与输血",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch7",
+            "title": "第七章 外科感染",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch8",
+            "title": "第八章 创伤、烧伤与犬咬伤",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch9",
+            "title": "第九章 颅脑疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch10",
+            "title": "第十章 乳房疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch11",
+            "title": "第十一章 胸部损伤",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch12",
+            "title": "第十二章 腹部疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch13",
+            "title": "第十三章 食管、胃、十二指肠疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch14",
+            "title": "第十四章 小肠、阑尾疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch15",
+            "title": "第十五章 结肠、直肠与肛管疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch16",
+            "title": "第十六章 胆道疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch17",
+            "title": "第十七章 泌尿系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch18",
+            "title": "第十八章 骨折",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch19",
+            "title": "第十九章 颈椎病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp3ch20",
+            "title": "第二十章 骨与关节感染",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "cp4",
+        "pianTitle": "第四篇 儿科学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp4ch1",
+            "title": "第一章 生长发育",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch2",
+            "title": "第二章 儿童保健",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch3",
+            "title": "第三章 营养和营养障碍疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch4",
+            "title": "第四章 新生儿与新生儿疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch5",
+            "title": "第五章 免疫性疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch6",
+            "title": "第六章 遗传性疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch7",
+            "title": "第七章 感染性疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch8",
+            "title": "第八章 呼吸系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch9",
+            "title": "第九章 消化系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch10",
+            "title": "第十章 心血管系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch11",
+            "title": "第十一章 泌尿系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch12",
+            "title": "第十二章 造血系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch13",
+            "title": "第十三章 神经系统疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp4ch14",
+            "title": "第十四章 内分泌系统疾病",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "cp5",
+        "pianTitle": "第五篇 妇产科学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp5ch1",
+            "title": "第一章 妊娠生理与诊断",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch2",
+            "title": "第二章 产前检查与正常分娩、产褥",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch3",
+            "title": "第三章 妊娠并发症",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch4",
+            "title": "第四章 妊娠合并症",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch5",
+            "title": "第五章 胎儿附属物异常",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch6",
+            "title": "第六章 异常分娩",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch7",
+            "title": "第七章 分娩并发症",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch8",
+            "title": "第八章 产褥期疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch9",
+            "title": "第九章 女性生殖系统炎症",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch10",
+            "title": "第十章 女性生殖系统肿瘤",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch11",
+            "title": "第十一章 其他妇产科疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp5ch12",
+            "title": "第十二章 计划生育",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "cp6",
+        "pianTitle": "第六篇 中医学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp6ch1",
+            "title": "第一章 中医基础理论",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp6ch2",
+            "title": "第二章 中医诊断学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp6ch3",
+            "title": "第三章 中药学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp6ch4",
+            "title": "第四章 方剂学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp6ch5",
+            "title": "第五章 中医内科学",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "cp7",
+        "pianTitle": "第七篇 传染病学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp7ch1",
+            "title": "第一章 总论",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp7ch2",
+            "title": "第二章 病毒感染",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp7ch3",
+            "title": "第三章 细菌感染",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "cp8",
+        "pianTitle": "第八篇 皮肤性病学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp8ch1",
+            "title": "第一章 总论",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp8ch2",
+            "title": "第二章 病毒性皮肤病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp8ch3",
+            "title": "第三章 细菌性皮肤病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp8ch4",
+            "title": "第四章 真菌性皮肤病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp8ch5",
+            "title": "第五章 动物性皮肤病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp8ch6",
+            "title": "第六章 过敏性皮肤病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp8ch7",
+            "title": "第七章 红斑丘疹鳞屑性皮肤病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp8ch8",
+            "title": "第八章 结缔组织病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp8ch9",
+            "title": "第九章 其他皮肤病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp8ch10",
+            "title": "第十章 性传播疾病",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "cp9",
+        "pianTitle": "第九篇 口腔及眼耳鼻喉科学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp9ch1",
+            "title": "第一章 口腔学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "cp9ch2",
+            "title": "第二章 眼耳鼻喉科学",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "cp10",
+        "pianTitle": "第十篇 医学影像学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "cp10ch1",
+            "title": "第一章 （待补充）",
+            "hasQuestions": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "part": "part3",
+    "partTitle": "第三部分 公共卫生知识",
+    "open": false,
+    "pians": [
+      {
+        "pian": "pp1",
+        "pianTitle": "第一篇 流行病学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "pp1ch1",
+            "title": "第一章 绪论",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp1ch2",
+            "title": "第二章 疾病的分布",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp1ch3",
+            "title": "第三章 病因与病因推断",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp1ch4",
+            "title": "第四章 描述性研究",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp1ch5",
+            "title": "第五章 队列研究",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp1ch6",
+            "title": "第六章 病例对照研究",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp1ch7",
+            "title": "第七章 实验流行病学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp1ch8",
+            "title": "第八章 筛检与诊断试验",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp1ch9",
+            "title": "第九章 传染病流行病学",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pp2",
+        "pianTitle": "第二篇 营养与食品卫生学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "pp2ch1",
+            "title": "第一章 营养学基础",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp2ch2",
+            "title": "第二章 各类食品的营养价值",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp2ch3",
+            "title": "第三章 公共营养",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp2ch4",
+            "title": "第四章 营养与营养相关疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp2ch5",
+            "title": "第五章 食品污染及其预防",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp2ch6",
+            "title": "第六章 食品添加剂",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp2ch7",
+            "title": "第七章 食源性疾病及其预防",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pp3",
+        "pianTitle": "第三篇 职业卫生与职业医学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "pp3ch1",
+            "title": "第一章 绪论",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp3ch2",
+            "title": "第二章 生产性毒物与职业中毒",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp3ch3",
+            "title": "第三章 生产性粉尘与职业病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp3ch4",
+            "title": "第四章 物理因素对健康的影响",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp3ch5",
+            "title": "第五章 生物性有害因素所致职业性损害",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp3ch6",
+            "title": "第六章 职业性致癌因素与职业肿瘤",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "pp4",
+        "pianTitle": "第四篇 公共卫生知识其他学科",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "pp4ch1",
+            "title": "第一章 预防医学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp4ch2",
+            "title": "第二章 卫生监督学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp4ch3",
+            "title": "第三章 社会医学",
+            "hasQuestions": false
+          },
+          {
+            "ch": "pp4ch4",
+            "title": "第四章 卫生微生物学",
+            "hasQuestions": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "part": "part4",
+    "partTitle": "第四部分 医学相关知识",
+    "open": false,
+    "pians": [
+      {
+        "pian": "xp1",
+        "pianTitle": "第一篇 医学心理学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "xp1ch1",
+            "title": "第一章 心理学基础",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp1ch2",
+            "title": "第二章 心理评估",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp1ch3",
+            "title": "第三章 心理健康",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp1ch4",
+            "title": "第四章 心理应激与异常心理",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp1ch5",
+            "title": "第五章 健康行为与心身疾病",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp1ch6",
+            "title": "第六章 病人心理与医患沟通",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp1ch7",
+            "title": "第七章 心理干预",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "xp2",
+        "pianTitle": "第二篇 医学伦理学",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "xp2ch1",
+            "title": "第一章 医学伦理的基本理论和观点",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp2ch2",
+            "title": "第二章 医学伦理学的规范体系",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp2ch3",
+            "title": "第三章 医学关系伦理",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp2ch4",
+            "title": "第四章 临床常规诊治伦理",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp2ch5",
+            "title": "第五章 其他伦理",
+            "hasQuestions": false
+          }
+        ]
+      },
+      {
+        "pian": "xp3",
+        "pianTitle": "第三篇 卫生政策及法律法规",
+        "open": false,
+        "chapters": [
+          {
+            "ch": "xp3ch1",
+            "title": "第一章 卫生法概述",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch2",
+            "title": "第二章 《中华人民共和国医师法》",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch3",
+            "title": "第三章 《护士条例》",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch4",
+            "title": "第四章 执业药师管理法律制度",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch5",
+            "title": "第五章 医疗事故处理条例",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch6",
+            "title": "第六章 药品管理法律制度",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch7",
+            "title": "第七章 《处方管理办法》",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch8",
+            "title": "第八章 《中华人民共和国疫苗管理法》",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch9",
+            "title": "第九章 《中华人民共和国传染病防治法》",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch10",
+            "title": "第十章 《突发公共卫生事件应急条例》",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch11",
+            "title": "第十一章 《中华人民共和国母婴保健法》",
+            "hasQuestions": false
+          },
+          {
+            "ch": "xp3ch12",
+            "title": "第十二章 献血相关法律制度",
+            "hasQuestions": false
+          }
+        ]
+      }
+    ]
+  }
+]
