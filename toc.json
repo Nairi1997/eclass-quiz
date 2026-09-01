@@ -306,22 +306,22 @@
           {
             "ch": "p8ch1",
             "title": "第一章 总论",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p8ch2",
             "title": "第二章 医学原虫学",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p8ch3",
             "title": "第三章 医学蠕虫学",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p8ch4",
             "title": "第四章 医学节肢动物学",
-            "hasQuestions": false
+            "hasQuestions": true
           }
         ]
       },
