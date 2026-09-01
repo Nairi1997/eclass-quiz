@@ -213,12 +213,12 @@
           {
             "ch": "p4ch10",
             "title": "第十章 神经系统的功能",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p4ch11",
             "title": "第十一章 内分泌",
-            "hasQuestions": false
+            "hasQuestions": true
           }
         ]
       },
