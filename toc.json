@@ -136,27 +136,27 @@
           {
             "ch": "p3ch6",
             "title": "第六章 消化系统",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p3ch7",
             "title": "第七章 呼吸系统",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p3ch8",
             "title": "第八章 泌尿系统",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p3ch9",
             "title": "第九章 生殖系统",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p3ch10",
             "title": "第十章 人体胚胎发育概要",
-            "hasQuestions": false
+            "hasQuestions": true
           }
         ]
       },
