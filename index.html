@@ -188,6 +188,16 @@
       </select>
     </div>
   </div>
+  <div class="settings-group">
+    <div class="settings-group-title">进度备份</div>
+    <div class="progress-stat" id="progress-stat">已做 0 题 · 正确 0 题 · 错题本 0 题 · 收藏 0 题</div>
+    <div class="backup-btn-row">
+      <button class="backup-btn" id="btn-export-progress">⬇ 导出进度备份</button>
+      <button class="backup-btn" id="btn-import-progress">⬆ 导入进度备份</button>
+    </div>
+    <div class="backup-tip">进度自动保存在本浏览器中，加题/刷新不会丢失。导出备份文件可防止清浏览器数据或换设备后进度丢失。导入时合并备份：已有答题记录以当前为准，错题本与收藏取并集。</div>
+    <input type="file" id="import-progress-file" accept=".json,application/json" style="display:none">
+  </div>
 </div>
 
 <!-- 智能组卷弹窗 -->

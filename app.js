@@ -770,10 +770,83 @@ function openSettings() {
   document.getElementById("settings-panel").classList.add("show");
   document.getElementById("settings-overlay").classList.add("show");
   syncSettingsUI();
+  updateProgressStat();
 }
 function closeSettings() {
   document.getElementById("settings-panel").classList.remove("show");
   document.getElementById("settings-overlay").classList.remove("show");
+}
+
+// ===== 进度备份 =====
+function updateProgressStat() {
+  const el = document.getElementById("progress-stat");
+  if (!el) return;
+  const done = Object.keys(state.results).length;
+  const correct = Object.values(state.results).filter(r => r && r.correct).length;
+  el.textContent = `已做 ${done} 题 · 正确 ${correct} 题 · 错题本 ${state.wrongSet.size} 题 · 收藏 ${state.favSet.size} 题`;
+}
+
+function exportProgress() {
+  const data = {
+    app: "eclass-quiz",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    results: state.results,
+    wrongSet: Array.from(state.wrongSet),
+    favSet: Array.from(state.favSet),
+    wrongCorrectCount: state.wrongCorrectCount,
+    settings: settings
+  };
+  const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const now = new Date();
+  const pad = n => String(n).padStart(2, "0");
+  a.download = `题库进度备份_${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}.json`;
+  a.href = url;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  alert(`已导出进度备份文件\n已做 ${Object.keys(state.results).length} 题 · 错题本 ${state.wrongSet.size} 题 · 收藏 ${state.favSet.size} 题\n请妥善保存该文件，可用于换设备或清缓存后恢复进度。`);
+}
+
+function importProgressFile(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data || data.app !== "eclass-quiz" || typeof data.results !== "object") {
+        alert("导入失败：不是有效的进度备份文件。");
+        return;
+      }
+      // 合并答题记录：当前已有记录优先，备份补充缺失的题目
+      let added = 0;
+      Object.keys(data.results).forEach(qid => {
+        if (!state.results[qid]) { state.results[qid] = data.results[qid]; added++; }
+      });
+      // 错题本、收藏取并集
+      (data.wrongSet || []).forEach(qid => state.wrongSet.add(Number(qid)));
+      (data.favSet || []).forEach(qid => state.favSet.add(Number(qid)));
+      // 错题连续答对次数取较大值
+      Object.keys(data.wrongCorrectCount || {}).forEach(qid => {
+        state.wrongCorrectCount[qid] = Math.max(state.wrongCorrectCount[qid] || 0, data.wrongCorrectCount[qid] || 0);
+      });
+      // 恢复设置（备份中有则覆盖）
+      if (data.settings) {
+        Object.assign(settings, data.settings);
+        saveSettings();
+        syncSettingsUI();
+      }
+      saveState();
+      updateStats();
+      updateProgressStat();
+      alert(`导入成功！补充答题记录 ${added} 条\n当前：已做 ${Object.keys(state.results).length} 题 · 错题本 ${state.wrongSet.size} 题 · 收藏 ${state.favSet.size} 题`);
+    } catch (err) {
+      alert("导入失败：文件解析错误（" + err.message + "）");
+    }
+  };
+  reader.readAsText(file);
 }
 
 function syncSettingsUI() {
@@ -1058,6 +1131,18 @@ async function init() {
   document.getElementById("settings-close").addEventListener("click", closeSettings);
   document.getElementById("settings-overlay").addEventListener("click", closeSettings);
   initSettingsEvents();
+
+  // 进度备份：导出/导入
+  document.getElementById("btn-export-progress").addEventListener("click", exportProgress);
+  document.getElementById("btn-import-progress").addEventListener("click", () => {
+    document.getElementById("import-progress-file").value = "";
+    document.getElementById("import-progress-file").click();
+  });
+  document.getElementById("import-progress-file").addEventListener("change", (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      importProgressFile(e.target.files[0]);
+    }
+  });
 
   // 智能组卷
   document.getElementById("smart-test-btn").addEventListener("click", () => {
