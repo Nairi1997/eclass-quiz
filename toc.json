@@ -198,12 +198,12 @@
           {
             "ch": "p4ch7",
             "title": "第七章 能量代谢与体温",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p4ch8",
             "title": "第八章 尿的生成和排出",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p4ch9",
