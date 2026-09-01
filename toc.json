@@ -274,27 +274,27 @@
           {
             "ch": "p7ch1",
             "title": "第一章 医学遗传学基础",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p7ch2",
             "title": "第二章 单基因遗传病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p7ch3",
             "title": "第三章 多基因遗传病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p7ch4",
             "title": "第四章 染色体遗传病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p7ch5",
             "title": "第五章 线粒体遗传病",
-            "hasQuestions": false
+            "hasQuestions": true
           }
         ]
       },
