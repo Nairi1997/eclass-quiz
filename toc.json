@@ -230,17 +230,17 @@
           {
             "ch": "p5ch1",
             "title": "第一章 生物大分子的结构和功能",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p5ch2",
             "title": "第二章 物质代谢及其调节",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p5ch3",
             "title": "第三章 遗传信息的传递",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p5ch4",
