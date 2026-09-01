@@ -168,17 +168,17 @@
           {
             "ch": "p4ch1",
             "title": "第一章 绪论",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p4ch2",
             "title": "第二章 细胞的基本功能",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p4ch3",
             "title": "第三章 血液",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p4ch4",
