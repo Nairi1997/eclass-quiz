@@ -245,7 +245,7 @@
           {
             "ch": "p5ch4",
             "title": "第四章 医学生物化学",
-            "hasQuestions": false
+            "hasQuestions": true
           }
         ]
       },
@@ -257,12 +257,12 @@
           {
             "ch": "p6ch1",
             "title": "第一章 医学微生物学",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p6ch2",
             "title": "第二章 医学免疫学",
-            "hasQuestions": false
+            "hasQuestions": true
           }
         ]
       },
