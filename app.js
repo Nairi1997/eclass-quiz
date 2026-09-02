@@ -68,6 +68,38 @@ function saveSettings() {
   localStorage.setItem("EclassQuizSettings", JSON.stringify(settings));
 }
 
+// ===== 记住上次做题位置 =====
+const VIEW_KEY = "EclassQuizView";
+function saveViewState() {
+  // 仅保存可稳定还原的视图（章节练习/普通全部题目）；随机、模考、搜索、智能组卷等不保存
+  if (state.mode !== "chapter" && state.mode !== "all") return;
+  if (state.customQuestions || state.searchQuery) return;
+  try {
+    localStorage.setItem(VIEW_KEY, JSON.stringify({
+      mode: state.mode,
+      filterCh: state.filterCh,
+      filterKd: state.filterKd,
+      currentIdx: state.currentIdx
+    }));
+  } catch(e) {}
+}
+function loadViewState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(VIEW_KEY));
+    if (!saved) return;
+    // 恢复章节与考点（确认仍存在于题库中）
+    if (saved.filterCh && QUIZ_DATA.some(q => q.ch === saved.filterCh)) {
+      state.filterCh = saved.filterCh;
+      const kdOk = saved.filterKd && QUIZ_DATA.some(q => q.ch === saved.filterCh && q.kd === saved.filterKd);
+      state.filterKd = kdOk ? saved.filterKd : "all";
+    }
+    if (saved.mode === "all") state.mode = "all";
+    if (typeof saved.currentIdx === "number" && saved.currentIdx > 0) {
+      state.currentIdx = saved.currentIdx;
+    }
+  } catch(e) {}
+}
+
 function shuffleArray(arr) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
@@ -128,10 +160,13 @@ function renderSidebar() {
   const nav = document.getElementById("sidebar-nav");
   let html = "";
   BOOK_TOC.forEach(part => {
-    const partOpen = part.open ? "open" : "";
+    // 当前章节所在的篇自动展开
+    const partHasActive = part.pians.some(p => p.chapters.some(c => c.hasQuestions && c.ch === state.filterCh));
+    const partOpen = (part.open || partHasActive) ? "open" : "";
     let piansHtml = "";
     part.pians.forEach(pian => {
-      const pianOpen = pian.open ? "open" : "";
+      const pianHasActive = pian.chapters.some(c => c.hasQuestions && c.ch === state.filterCh);
+      const pianOpen = (pian.open || pianHasActive) ? "open" : "";
       let chHtml = "";
       pian.chapters.forEach(ch => {
         const qCount = ch.hasQuestions ? QUIZ_DATA.filter(q => q.ch === ch.ch).length : 0;
@@ -275,6 +310,7 @@ function updateStats() {
 }
 
 function renderQuestion() {
+  saveViewState();  // 记住当前做题位置
   const questions = getQuestions();
   const card = document.getElementById("question-card");
   const welcome = document.getElementById("welcome-card");
@@ -776,13 +812,14 @@ function updateProgressStat() {
 function exportProgress() {
   const data = {
     app: "eclass-quiz",
-    version: 1,
+    version: 2,
     exportedAt: new Date().toISOString(),
     results: state.results,
     wrongSet: Array.from(state.wrongSet),
     favSet: Array.from(state.favSet),
     wrongCorrectCount: state.wrongCorrectCount,
-    settings: settings
+    settings: settings,
+    view: JSON.parse(localStorage.getItem(VIEW_KEY) || "null")
   };
   const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -825,9 +862,17 @@ function importProgressFile(file) {
         saveSettings();
         syncSettingsUI();
       }
+      // 恢复上次的做题位置
+      if (data.view && typeof data.view === "object") {
+        try {
+          localStorage.setItem(VIEW_KEY, JSON.stringify(data.view));
+          loadViewState();
+        } catch(e2) {}
+      }
       saveState();
       updateStats();
       updateProgressStat();
+      renderQuestion();
       alert(`导入成功！补充答题记录 ${added} 条\n当前：已做 ${Object.keys(state.results).length} 题 · 错题本 ${state.wrongSet.size} 题 · 收藏 ${state.favSet.size} 题`);
     } catch (err) {
       alert("导入失败：文件解析错误（" + err.message + "）");
@@ -1032,6 +1077,7 @@ async function init() {
   }
 
   loadState();
+  loadViewState();  // 恢复上次做题位置
   syncSettingsUI();
 
   // ===== 侧边栏抽屉控制 =====
@@ -1151,10 +1197,11 @@ async function init() {
   // 重置进度（侧边栏按钮 + 顶部按钮共用）
   function doReset() {
     const choice = confirm(
-      "选择重置方式：\n\n" +
-      "「确定」= 清除全部答题进度（所有记录归零）\n" +
-      "「取消」= 取消操作\n\n" +
-      "提示：仅清除之前答案有误的错题记录，可手动重做那几道题即可。"
+      "确定要清除全部做题进度吗？\n\n" +
+      "答题记录、错题本、收藏将全部清零且无法恢复。\n" +
+      "（建议先在设置中导出进度备份）\n\n" +
+      "「确定」= 清除全部进度\n" +
+      "「取消」= 取消操作"
     );
     if (choice) {
       closeSidebarDrawer();
@@ -1162,6 +1209,9 @@ async function init() {
       state.wrongSet = new Set();
       state.favSet = new Set();
       state.wrongCorrectCount = {};
+      state.mode = "chapter";
+      state.filterCh = "ch1";
+      state.filterKd = "考点一";
       state.currentIdx = 0;
       state.selected = [];
       state.answered = false;
@@ -1169,6 +1219,7 @@ async function init() {
       state.customQuestions = null;
       saveState();
       updateStats();
+      updateModeButtons();
       renderSidebar();
       renderQuestion();
     }
