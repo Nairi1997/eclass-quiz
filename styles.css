@@ -823,6 +823,40 @@ body {
   line-height: 1.6;
   margin-top: 10px;
 }
+/* 答案纠错标记按钮 */
+.report-btn {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  border: 1px solid #f59e0b;
+  background: transparent;
+  color: #b45309;
+  border-radius: 6px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: background 0.2s;
+}
+.report-btn:hover { background: #fef3c7; }
+.report-btn.reported {
+  background: #fef3c7;
+  color: #b45309;
+  font-weight: 600;
+}
+.report-note {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: #fef3c7;
+  border-left: 3px solid #f59e0b;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #92400e;
+}
+[data-theme="dark"] .report-btn { border-color: #d97706; color: #fbbf24; }
+[data-theme="dark"] .report-btn:hover { background: rgba(217,119,6,0.2); }
+[data-theme="dark"] .report-btn.reported { background: rgba(217,119,6,0.25); color: #fbbf24; }
+[data-theme="dark"] .report-note { background: rgba(217,119,6,0.15); border-left-color: #f59e0b; color: #fcd34d; }
 .setting-item {
   display: flex;
   justify-content: space-between;

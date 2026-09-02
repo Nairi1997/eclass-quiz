@@ -14,6 +14,7 @@ let state = {
   wrongSet: new Set(),
   favSet: new Set(),
   wrongCorrectCount: {},  // 错题强化：连续答对次数 {qid: count}
+  errorReports: {},       // 答案纠错标记 {qid: {note, ts}}
   examQuestions: [],
   examStartTime: 0,
   examTimeLimit: 1200,
@@ -43,6 +44,7 @@ function loadState() {
       state.wrongSet = new Set(saved.wrongSet || []);
       state.favSet = new Set(saved.favSet || []);
       state.wrongCorrectCount = saved.wrongCorrectCount || {};
+      state.errorReports = saved.errorReports || {};
     }
 
     const savedSettings = JSON.parse(localStorage.getItem("EclassQuizSettings"));
@@ -62,6 +64,7 @@ function saveState() {
     wrongSet: Array.from(state.wrongSet),
     favSet: Array.from(state.favSet),
     wrongCorrectCount: state.wrongCorrectCount,
+    errorReports: state.errorReports,
   }));
 }
 function saveSettings() {
@@ -595,12 +598,40 @@ function showResult(q, isCorrect) {
 
   feedback.innerHTML = `
     <div class="feedback-title">${isCorrect ? "✓ 回答正确" : "✗ 回答错误"}</div>
-    <div class="feedback-answer">正确答案：${correctText}</div>
+    <div class="feedback-answer">正确答案：${correctText}
+      <button class="report-btn ${state.errorReports[q.id] ? 'reported' : ''}" id="report-error-btn" title="标记此题答案与教材不符">${state.errorReports[q.id] ? '⚠ 已标记答案有误' : '⚠ 答案有误？'}</button>
+    </div>
     <div class="feedback-explanation">
       ${isExpanded ? q.explain : briefExplain}
       ${q.explain.length > 60 ? `<div class="explain-detail-toggle" id="explain-toggle">${isExpanded ? '收起' : '展开详情'}</div>` : ''}
     </div>
+    ${state.errorReports[q.id] ? `<div class="report-note">您的备注：${(state.errorReports[q.id].note || '').replace(/</g,'&lt;')}</div>` : ''}
   `;
+
+  const reportBtn = document.getElementById("report-error-btn");
+  if (reportBtn) {
+    reportBtn.addEventListener("click", () => {
+      if (state.errorReports[q.id]) {
+        // 已标记，点击取消
+        if (confirm("已标记此题答案有误，是否取消标记？")) {
+          delete state.errorReports[q.id];
+          saveState();
+          showResult(q, isCorrect);
+        }
+      } else {
+        const note = prompt(
+          "标记此题答案有误\n\n请填写教材上的正确内容（选填，方便后续修正）：\n例如：正确答案应为XX",
+          ""
+        );
+        if (note !== null) {
+          state.errorReports[q.id] = { note: note.trim(), ts: Date.now() };
+          saveState();
+          alert("已标记！此题已加入纠错清单，请定期在设置中导出进度备份并发给开发者修正。");
+          showResult(q, isCorrect);
+        }
+      }
+    });
+  }
 
   const toggle = document.getElementById("explain-toggle");
   if (toggle) {
@@ -806,7 +837,8 @@ function updateProgressStat() {
   if (!el) return;
   const done = Object.keys(state.results).length;
   const correct = Object.values(state.results).filter(r => r && r.correct).length;
-  el.textContent = `已做 ${done} 题 · 正确 ${correct} 题 · 错题本 ${state.wrongSet.size} 题 · 收藏 ${state.favSet.size} 题`;
+  const errN = Object.keys(state.errorReports).length;
+  el.textContent = `已做 ${done} 题 · 正确 ${correct} 题 · 错题本 ${state.wrongSet.size} 题 · 收藏 ${state.favSet.size} 题` + (errN ? ` · ⚠已标记 ${errN} 题疑似有误` : "");
 }
 
 function exportProgress() {
@@ -818,6 +850,7 @@ function exportProgress() {
     wrongSet: Array.from(state.wrongSet),
     favSet: Array.from(state.favSet),
     wrongCorrectCount: state.wrongCorrectCount,
+    errorReports: state.errorReports,
     settings: settings,
     view: JSON.parse(localStorage.getItem(VIEW_KEY) || "null")
   };
@@ -855,6 +888,10 @@ function importProgressFile(file) {
       // 错题连续答对次数取较大值
       Object.keys(data.wrongCorrectCount || {}).forEach(qid => {
         state.wrongCorrectCount[qid] = Math.max(state.wrongCorrectCount[qid] || 0, data.wrongCorrectCount[qid] || 0);
+      });
+      // 纠错标记合并（以备份为准补充）
+      Object.keys(data.errorReports || {}).forEach(qid => {
+        if (!state.errorReports[qid]) state.errorReports[qid] = data.errorReports[qid];
       });
       // 恢复设置（备份中有则覆盖）
       if (data.settings) {
@@ -1209,6 +1246,7 @@ async function init() {
       state.wrongSet = new Set();
       state.favSet = new Set();
       state.wrongCorrectCount = {};
+      state.errorReports = {};
       state.mode = "chapter";
       state.filterCh = "ch1";
       state.filterKd = "考点一";
