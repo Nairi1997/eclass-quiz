@@ -44,20 +44,7 @@ function loadState() {
       state.favSet = new Set(saved.favSet || []);
       state.wrongCorrectCount = saved.wrongCorrectCount || {};
     }
-    
-    // 自动清除已修复题目的旧答题记录（因答案曾出错，旧记录不可靠）
-    const FIXED_QIDS = [8, 2001, 2012];  // 曾修复答案的题目ID
-    let needClean = false;
-    FIXED_QIDS.forEach(qid => {
-      if (state.results[qid]) {
-        delete state.results[qid];
-        state.wrongSet.delete(qid);
-        delete state.wrongCorrectCount[qid];
-        needClean = true;
-      }
-    });
-    if (needClean) saveState();
-    
+
     const savedSettings = JSON.parse(localStorage.getItem("EclassQuizSettings"));
     if (savedSettings) {
       Object.assign(settings, savedSettings);
