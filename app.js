@@ -179,6 +179,36 @@ function getAdjacentCh(direction) {
   return CHAPTER_ORDER[idx + direction] || null;
 }
 
+// 当前章节的考点有序列表
+function getChapterKds() {
+  return [...new Set(QUIZ_DATA.filter(q => q.ch === state.filterCh).map(q => q.kd))];
+}
+
+// 下一考点（"全部题目"视图无下一考点，直接流转到下一章）
+function getNextKd() {
+  if (state.filterKd === "all") return null;
+  const kds = getChapterKds();
+  const idx = kds.indexOf(state.filterKd);
+  return idx >= 0 ? (kds[idx + 1] || null) : null;
+}
+
+// 当前章节是否全部题目已作答
+function isChapterDone() {
+  const chQs = QUIZ_DATA.filter(q => q.ch === state.filterCh);
+  return chQs.length > 0 && chQs.every(q => state.results[q.id]);
+}
+
+// 切换到本章节的指定考点（题号归零）
+function gotoKd(kd) {
+  if (!kd) return;
+  state.filterKd = kd;
+  state.currentIdx = 0;
+  state.selected = [];
+  state.answered = false;
+  renderQuestion();
+  renderSidebar();
+}
+
 function gotoChapter(chId) {
   if (!chId) return;
   state.mode = "chapter";
@@ -213,24 +243,23 @@ function updateChapterNav(questions) {
   document.getElementById("chapter-nav-info").textContent = n ? `当前 ${cur.title} · 共 ${n} 题` : cur.title;
 }
 
-function showChapterComplete(questions) {
-  if (!questions || questions.length === 0) return;
+function showChapterComplete() {
   const el = document.getElementById("chapter-complete-card");
   if (!el) return;
-  const total = questions.length;
-  const done = questions.filter(q => state.results[q.id]).length;
-  const correct = questions.filter(q => state.results[q.id] && state.results[q.id].correct).length;
+  const chQs = QUIZ_DATA.filter(q => q.ch === state.filterCh);
+  if (chQs.length === 0) return;
+  const total = chQs.length;
+  const done = chQs.filter(q => state.results[q.id]).length;
+  const correct = chQs.filter(q => state.results[q.id] && state.results[q.id].correct).length;
   const rate = done > 0 ? Math.round(correct / done * 100) : 0;
   const chMeta = CHAPTER_ORDER.find(c => c.ch === state.filterCh);
-  const scopeName = state.filterKd === "all"
-    ? (chMeta ? chMeta.title : "")
-    : `${state.filterKd} ${(questions[0] || {}).kdTitle || ""}`.trim();
+  const scopeName = chMeta ? chMeta.title : "";
   const nextCh = getAdjacentCh(1);
   el.innerHTML = `
     <div class="cc-emoji">🎉</div>
-    <div class="cc-title">本节练习完成</div>
+    <div class="cc-title">本章题目已全部完成</div>
     <div class="cc-scope">${scopeName}</div>
-    <div class="cc-stats">已练 <b>${done}</b> / ${total} 题 · 答对 <b>${correct}</b> 题 · 正确率 <b>${rate}%</b></div>
+    <div class="cc-stats">共 ${total} 题 · 答对 <b>${correct}</b> 题 · 正确率 <b>${rate}%</b></div>
     ${nextCh ? `<button class="action-btn primary" id="cc-next-ch">继续下一章：${nextCh.title} ›</button>`
              : `<div class="cc-end">全部章节已完成，可在目录中选择其他学科复习 📚</div>`}
   `;
@@ -238,6 +267,28 @@ function showChapterComplete(questions) {
   const btn = document.getElementById("cc-next-ch");
   if (btn) btn.addEventListener("click", () => gotoChapter(nextCh.ch));
   setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "nearest" }), 150);
+}
+
+// 智能下一题按钮：考点末尾→下一考点；整章末尾→下一章
+function updateNextBtn(questions) {
+  const btn = document.getElementById("next-btn");
+  if (!btn) return;
+  const isLast = state.currentIdx >= questions.length - 1;
+  if (!isLast) {
+    btn.textContent = "下一题";
+    btn.disabled = false;
+    return;
+  }
+  const flowMode = (state.mode === "chapter" || state.mode === "random" || state.mode === "quickcard")
+    && !state.searchQuery && !state.customQuestions;
+  if (flowMode && (state.mode === "quickcard" || state.answered)) {
+    const nextKd = getNextKd();
+    if (nextKd) { btn.textContent = "下一考点 ›"; btn.disabled = false; return; }
+    const nextCh = getAdjacentCh(1);
+    if (nextCh) { btn.textContent = "下一章 ›"; btn.disabled = false; return; }
+  }
+  btn.textContent = "下一题";
+  btn.disabled = true;
 }
 
 // 面包屑精简："第九篇 药理学—第二十章 呼吸系统药物" → "药理学 · 第二十章 呼吸系统药物"
@@ -589,7 +640,7 @@ function renderQuestion() {
 
   document.getElementById("prev-btn").disabled = state.currentIdx === 0;
   document.getElementById("submit-btn").disabled = state.selected.length === 0 || state.answered;
-  document.getElementById("next-btn").disabled = state.currentIdx === questions.length - 1;
+  updateNextBtn(questions);
   if (state.answered) {
     document.getElementById("submit-btn").textContent = "已作答";
     document.getElementById("submit-btn").disabled = true;
@@ -640,7 +691,7 @@ function renderQuickCard(questions) {
 
   document.getElementById("prev-btn").disabled = state.currentIdx === 0;
   document.getElementById("submit-btn").style.display = "none";
-  document.getElementById("next-btn").disabled = state.currentIdx === questions.length - 1;
+  updateNextBtn(questions);
   updateChapterNav(questions);
 }
 
@@ -759,11 +810,12 @@ function submitAnswer() {
 
   document.getElementById("submit-btn").textContent = "已作答";
   document.getElementById("submit-btn").disabled = true;
+  updateNextBtn(questions);
 
-  // 章节练习：提交最后一题后显示本节完成卡片
+  // 章节练习：整章题目全部完成时才显示完成卡片
   if (state.mode === "chapter" && !state.searchQuery && !state.customQuestions &&
-      state.currentIdx === questions.length - 1) {
-    showChapterComplete(questions);
+      state.currentIdx === questions.length - 1 && isChapterDone()) {
+    showChapterComplete();
   }
 
   // 自动跳下一题
@@ -781,7 +833,17 @@ function nextQuestion() {
     state.selected = [];
     state.answered = false;
     renderQuestion();
+    return;
   }
+  // 已到当前题集末尾：考点做完接下一考点，整章做完接下一章
+  const flowMode = (state.mode === "chapter" || state.mode === "random" || state.mode === "quickcard")
+    && !state.searchQuery && !state.customQuestions;
+  if (!flowMode) return;
+  if (state.mode !== "quickcard" && !state.answered) return;  // 做题模式需先提交本题
+  const nextKd = getNextKd();
+  if (nextKd) { gotoKd(nextKd); return; }
+  const nextCh = getAdjacentCh(1);
+  if (nextCh) gotoChapter(nextCh.ch);
 }
 function prevQuestion() {
   if (state.currentIdx > 0) {
