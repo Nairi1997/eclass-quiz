@@ -20,7 +20,6 @@ let state = {
   examTimeLimit: 1200,
   examTimer: null,
   searchQuery: "",
-  tagFilter: "all",
   customQuestions: null,  // 智能组卷的题目列表
   shuffledOptMap: {},     // 打乱选项的映射 {qid: [perm]}
 };
@@ -157,6 +156,131 @@ function getQuestions() {
     return QUIZ_DATA.filter(q => q.ch === state.filterCh);
   }
   return QUIZ_DATA.filter(q => q.ch === state.filterCh && q.kd === state.filterKd);
+}
+
+// ===== 章节快捷导航 =====
+let CHAPTER_ORDER = [];  // 有题章节的有序列表 [{ch, title}]
+const MORE_MODE_NAMES = { "wrong-drill": "错题强化", "exam": "限时模考", "quickcard": "速查卡", "fav": "收藏练习" };
+
+function buildChapterOrder() {
+  CHAPTER_ORDER = [];
+  BOOK_TOC.forEach(part => {
+    part.pians.forEach(pian => {
+      pian.chapters.forEach(c => {
+        if (c.hasQuestions) CHAPTER_ORDER.push({ ch: c.ch, title: c.title });
+      });
+    });
+  });
+}
+
+function getAdjacentCh(direction) {
+  const idx = CHAPTER_ORDER.findIndex(c => c.ch === state.filterCh);
+  if (idx === -1) return null;
+  return CHAPTER_ORDER[idx + direction] || null;
+}
+
+function gotoChapter(chId) {
+  if (!chId) return;
+  state.mode = "chapter";
+  state.filterCh = chId;
+  state.searchQuery = "";
+  state.customQuestions = null;
+  const kds = [...new Set(QUIZ_DATA.filter(q => q.ch === chId).map(q => q.kd))];
+  state.filterKd = kds.length > 0 ? kds[0] : "all";
+  state.currentIdx = 0;
+  state.selected = [];
+  state.answered = false;
+  closeSidebarDrawer();
+  updateModeButtons();
+  renderSidebar();
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function updateChapterNav(questions) {
+  const nav = document.getElementById("chapter-nav");
+  if (!nav) return;
+  const chMode = (state.mode === "chapter" || state.mode === "random" || state.mode === "quickcard")
+    && !state.searchQuery && !state.customQuestions;
+  const cur = CHAPTER_ORDER.find(c => c.ch === state.filterCh);
+  if (!chMode || !cur) { nav.style.display = "none"; return; }
+  nav.style.display = "flex";
+  const prevCh = getAdjacentCh(-1);
+  const nextCh = getAdjacentCh(1);
+  document.getElementById("prev-chapter-btn").disabled = !prevCh;
+  document.getElementById("next-chapter-btn").disabled = !nextCh;
+  const n = (questions || []).length;
+  document.getElementById("chapter-nav-info").textContent = n ? `当前 ${cur.title} · 共 ${n} 题` : cur.title;
+}
+
+function showChapterComplete(questions) {
+  if (!questions || questions.length === 0) return;
+  const el = document.getElementById("chapter-complete-card");
+  if (!el) return;
+  const total = questions.length;
+  const done = questions.filter(q => state.results[q.id]).length;
+  const correct = questions.filter(q => state.results[q.id] && state.results[q.id].correct).length;
+  const rate = done > 0 ? Math.round(correct / done * 100) : 0;
+  const chMeta = CHAPTER_ORDER.find(c => c.ch === state.filterCh);
+  const scopeName = state.filterKd === "all"
+    ? (chMeta ? chMeta.title : "")
+    : `${state.filterKd} ${(questions[0] || {}).kdTitle || ""}`.trim();
+  const nextCh = getAdjacentCh(1);
+  el.innerHTML = `
+    <div class="cc-emoji">🎉</div>
+    <div class="cc-title">本节练习完成</div>
+    <div class="cc-scope">${scopeName}</div>
+    <div class="cc-stats">已练 <b>${done}</b> / ${total} 题 · 答对 <b>${correct}</b> 题 · 正确率 <b>${rate}%</b></div>
+    ${nextCh ? `<button class="action-btn primary" id="cc-next-ch">继续下一章：${nextCh.title} ›</button>`
+             : `<div class="cc-end">全部章节已完成，可在目录中选择其他学科复习 📚</div>`}
+  `;
+  el.classList.add("show");
+  const btn = document.getElementById("cc-next-ch");
+  if (btn) btn.addEventListener("click", () => gotoChapter(nextCh.ch));
+  setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "nearest" }), 150);
+}
+
+// 面包屑精简："第九篇 药理学—第二十章 呼吸系统药物" → "药理学 · 第二十章 呼吸系统药物"
+function formatCrumb(q) {
+  const t = q.chTitle || "";
+  const dash = t.indexOf("—");
+  if (dash === -1) return `<span class="accent">${t}</span>`;
+  const pianName = t.slice(0, dash).replace(/^第.+?篇\s*/, "");
+  const chName = t.slice(dash + 1);
+  return `<span class="accent">${pianName}</span> · ${chName} · <span class="accent">${q.kd} ${q.kdTitle}</span>`;
+}
+
+// 进度指示：题量≤60显示圆点，超过显示紧凑进度条
+function renderProgressDots(questions, dotsArea, withResult) {
+  const total = questions.length;
+  if (total > 60) {
+    const cur = Math.min(state.currentIdx, total - 1) + 1;
+    dotsArea.innerHTML = `
+      <div class="progress-bar-wrap">
+        <div class="progress-bar"><div class="progress-bar-fill" style="width:${(cur / total * 100).toFixed(1)}%"></div></div>
+        <span class="progress-bar-text">第 ${cur} / ${total} 题</span>
+      </div>`;
+    return;
+  }
+  let dotsHtml = "";
+  questions.forEach((qq, i) => {
+    let cls = "progress-dot";
+    if (withResult) {
+      const res = state.results[qq.id];
+      if (res) cls += res.correct ? " correct" : " wrong";
+    }
+    if (i === state.currentIdx) cls += " current";
+    dotsHtml += `<div class="${cls}" data-idx="${i}" title="第${i + 1}题"></div>`;
+  });
+  dotsArea.innerHTML = dotsHtml;
+  dotsArea.querySelectorAll(".progress-dot").forEach(d => {
+    d.addEventListener("click", () => {
+      state.currentIdx = parseInt(d.dataset.idx);
+      state.selected = [];
+      state.answered = false;
+      renderQuestion();
+    });
+  });
 }
 
 function renderSidebar() {
@@ -302,11 +426,7 @@ function updateStats() {
   const wrong = state.wrongSet.size;
   const fav = state.favSet.size;
   const rate = done > 0 ? Math.round(correct / done * 100) : 0;
-  document.getElementById("stat-total").textContent = total;
-  document.getElementById("stat-done").textContent = done;
-  document.getElementById("stat-correct").textContent = correct;
-  document.getElementById("stat-wrong").textContent = wrong;
-  document.getElementById("stat-rate").textContent = rate + "%";
+  document.getElementById("stats-line").textContent = `${total}题 · 已答 ${done} · 正确率 ${rate}%`;
   document.getElementById("wrong-count").textContent = wrong;
   document.getElementById("fav-count").textContent = fav;
   document.getElementById("welcome-total").textContent = total;
@@ -319,8 +439,9 @@ function renderQuestion() {
   const welcome = document.getElementById("welcome-card");
   const dotsArea = document.getElementById("progress-dots");
   const examResult = document.getElementById("exam-result-card");
-  const tagBar = document.getElementById("tag-filter-bar");
   const kdSwitcher = document.getElementById("kd-switcher");
+  const completeCard = document.getElementById("chapter-complete-card");
+  if (completeCard) completeCard.classList.remove("show");
 
   // 模考模式已结束
   if (examResult.classList.contains("show")) {
@@ -360,27 +481,6 @@ function renderQuestion() {
     kdSwitcher.classList.remove("show");
   }
 
-  // 标签筛选栏
-  if (settings.showTags && (state.mode === "chapter" || state.mode === "all" || state.mode === "random" || state.mode === "fav" || state.mode === "quickcard")) {
-    tagBar.innerHTML = `
-      <button class="tag-filter-btn ${state.tagFilter==='all'?'active':''}" data-tag="all">全部</button>
-      <button class="tag-filter-btn ${state.tagFilter==='memory'?'active':''}" data-tag="memory">记忆题</button>
-      <button class="tag-filter-btn ${state.tagFilter==='understanding'?'active':''}" data-tag="understanding">理解题</button>
-      <button class="tag-filter-btn ${state.tagFilter==='application'?'active':''}" data-tag="application">应用题</button>
-    `;
-    tagBar.querySelectorAll(".tag-filter-btn").forEach(b => {
-      b.addEventListener("click", () => {
-        state.tagFilter = b.dataset.tag;
-        state.currentIdx = 0;
-        state.selected = [];
-        state.answered = false;
-        renderQuestion();
-      });
-    });
-  } else {
-    tagBar.innerHTML = "";
-  }
-
   // 速查卡模式
   if (state.mode === "quickcard") {
     renderQuickCard(questions);
@@ -391,6 +491,7 @@ function renderQuestion() {
     card.style.display = "none";
     welcome.style.display = "block";
     dotsArea.innerHTML = "";
+    updateChapterNav([]);
     return;
   }
 
@@ -402,42 +503,20 @@ function renderQuestion() {
 
   const q = questions[state.currentIdx];
 
-  let dotsHtml = "";
-  questions.forEach((qq, i) => {
-    let cls = "progress-dot";
-    const res = state.results[qq.id];
-    if (res) cls += res.correct ? " correct" : " wrong";
-    if (i === state.currentIdx) cls += " current";
-    dotsHtml += `<div class="${cls}" data-idx="${i}" title="第${i+1}题"></div>`;
-  });
-  dotsArea.innerHTML = dotsHtml;
-  dotsArea.querySelectorAll(".progress-dot").forEach(d => {
-    d.addEventListener("click", () => {
-      state.currentIdx = parseInt(d.dataset.idx);
-      state.selected = [];
-      state.answered = false;
-      renderQuestion();
-    });
-  });
+  renderProgressDots(questions, dotsArea, true);
 
   const isFav = state.favSet.has(q.id);
-  document.getElementById("breadcrumb").innerHTML =
-    `<span class="accent">${q.chTitle}</span> > <span class="accent">${q.kd}</span> ${q.kdTitle}` +
-    ` <button class="fav-btn ${isFav?'active':''}" id="fav-toggle" title="收藏/取消">${isFav?'★':'☆'}</button>`;
+  document.getElementById("breadcrumb").innerHTML = formatCrumb(q);
 
   const typeLabel = {single:"单选题", multiple:"多选题", judge:"判断题"}[q.type];
   const diffLabel = {basic:"基础", medium:"进阶", hard:"挑战"}[q.diff];
-  let tagHtml = `
-    <span class="tag type-${q.type}">${typeLabel}</span>
-    <span class="tag difficulty-${q.diff}">${diffLabel}</span>`;
-  // 自动推断标签
-  if (q.q.length < 25 && q.opts.length <= 4) tagHtml += `<span class="tag" style="background:#f3e8ff;color:#7c3aed">记忆</span>`;
-  else if (q.explain.length > 100) tagHtml += `<span class="tag" style="background:#fef3c7;color:#b45309">理解</span>`;
-  else tagHtml += `<span class="tag" style="background:#dcfce7;color:#15803d">应用</span>`;
+  let tagHtml = settings.showTags
+    ? `<span class="tag type-${q.type}">${typeLabel}</span><span class="tag difficulty-${q.diff}">${diffLabel}</span>`
+    : "";
 
   document.getElementById("question-meta").innerHTML = `
     <div class="question-tags">${tagHtml}</div>
-    <div class="question-num">第 ${state.currentIdx + 1} / ${questions.length} 题</div>
+    <div class="question-num">第 ${state.currentIdx + 1} / ${questions.length} 题<button class="fav-btn ${isFav?'active':''}" id="fav-toggle" title="收藏/取消">${isFav?'★':'☆'}</button></div>
   `;
 
   document.getElementById("question-text").innerHTML = q.q;
@@ -517,6 +596,7 @@ function renderQuestion() {
   } else {
     document.getElementById("submit-btn").textContent = "提交答案";
   }
+  updateChapterNav(questions);
 }
 
 function renderQuickCard(questions) {
@@ -526,6 +606,7 @@ function renderQuickCard(questions) {
   if (questions.length === 0) {
     card.style.display = "none";
     welcome.style.display = "block";
+    updateChapterNav([]);
     return;
   }
   card.style.display = "block";
@@ -537,7 +618,7 @@ function renderQuickCard(questions) {
   const correctText = correctAns.map(i => String.fromCharCode(65+i) + ". " + q.opts[i]).join("; ");
 
   document.getElementById("breadcrumb").innerHTML =
-    `<span class="accent">${q.chTitle}</span> > <span class="accent">${q.kd}</span> ${q.kdTitle} <span style="color:var(--muted);font-size:12px">[速查卡]</span>`;
+    formatCrumb(q) + ` <span style="color:var(--muted);font-size:12px">[速查卡]</span>`;
   document.getElementById("question-meta").innerHTML = `
     <div class="question-tags">
       <span class="tag type-${q.type}">${{single:"单选",multiple:"多选",judge:"判断"}[q.type]}</span>
@@ -554,24 +635,13 @@ function renderQuickCard(questions) {
   document.getElementById("feedback").innerHTML = "";
   document.getElementById("feedback").className = "feedback";
 
-  // 进度点
-  let dotsHtml = "";
-  questions.forEach((qq, i) => {
-    let cls = "progress-dot";
-    if (i === state.currentIdx) cls += " current";
-    dotsHtml += `<div class="${cls}" data-idx="${i}"></div>`;
-  });
-  dotsArea.innerHTML = dotsHtml;
-  dotsArea.querySelectorAll(".progress-dot").forEach(d => {
-    d.addEventListener("click", () => {
-      state.currentIdx = parseInt(d.dataset.idx);
-      renderQuestion();
-    });
-  });
+  // 进度指示（题量大时自动切换为紧凑进度条）
+  renderProgressDots(questions, dotsArea, false);
 
   document.getElementById("prev-btn").disabled = state.currentIdx === 0;
   document.getElementById("submit-btn").style.display = "none";
   document.getElementById("next-btn").disabled = state.currentIdx === questions.length - 1;
+  updateChapterNav(questions);
 }
 
 function showResult(q, isCorrect) {
@@ -690,6 +760,12 @@ function submitAnswer() {
   document.getElementById("submit-btn").textContent = "已作答";
   document.getElementById("submit-btn").disabled = true;
 
+  // 章节练习：提交最后一题后显示本节完成卡片
+  if (state.mode === "chapter" && !state.searchQuery && !state.customQuestions &&
+      state.currentIdx === questions.length - 1) {
+    showChapterComplete(questions);
+  }
+
   // 自动跳下一题
   if (settings.autoNext && isCorrect) {
     setTimeout(() => {
@@ -716,10 +792,30 @@ function prevQuestion() {
   }
 }
 
+function closeModeMoreMenu() {
+  const el = document.getElementById("mode-more");
+  if (el) el.classList.remove("open");
+}
+
 function updateModeButtons() {
-  document.querySelectorAll(".mode-btn").forEach(btn => {
+  document.querySelectorAll(".mode-btn[data-mode]").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.mode === state.mode);
   });
+  document.querySelectorAll(".mode-more-item").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.mode === state.mode);
+  });
+  // "更多"下拉按钮：当前模式在菜单内时显示模式名并高亮
+  const trigger = document.getElementById("mode-more-trigger");
+  if (trigger) {
+    const moreName = MORE_MODE_NAMES[state.mode];
+    if (moreName) {
+      trigger.classList.add("active");
+      trigger.textContent = moreName + " ▾";
+    } else {
+      trigger.classList.remove("active");
+      trigger.textContent = "更多 ▾";
+    }
+  }
   const wp = document.getElementById("wrong-panel");
   wp.classList.toggle("show", state.mode === "wrong" || state.mode === "wrong-drill");
   if (state.mode === "wrong" || state.mode === "wrong-drill") {
@@ -810,11 +906,11 @@ function toggleDarkMode() {
   if (settings.darkMode) {
     document.documentElement.setAttribute("data-theme", "dark");
     localStorage.setItem("EclassQuizTheme", "dark");
-    document.getElementById("dark-mode-btn").textContent = "☀ 亮色";
+    document.getElementById("dark-mode-btn").textContent = "☀";
   } else {
     document.documentElement.removeAttribute("data-theme");
     localStorage.setItem("EclassQuizTheme", "light");
-    document.getElementById("dark-mode-btn").textContent = "🌙 暗色";
+    document.getElementById("dark-mode-btn").textContent = "🌙";
   }
   saveSettings();
   syncSettingsUI();
@@ -931,8 +1027,8 @@ function syncSettingsUI() {
     const key = sel.dataset.key;
     sel.value = settings[key];
   });
-  // Dark mode button text
-  document.getElementById("dark-mode-btn").textContent = settings.darkMode ? "☀ 亮色" : "🌙 暗色";
+  // Dark mode button icon
+  document.getElementById("dark-mode-btn").textContent = settings.darkMode ? "☀" : "🌙";
 }
 
 function initSettingsEvents() {
@@ -1116,16 +1212,23 @@ async function init() {
   loadState();
   loadViewState();  // 恢复上次做题位置
   syncSettingsUI();
+  buildChapterOrder();  // 构建有题章节顺序列表
+
+  // 欢迎页动态统计
+  document.getElementById("welcome-chapters").textContent = CHAPTER_ORDER.length;
+  document.getElementById("welcome-parts").textContent = BOOK_TOC.length;
 
   // ===== 侧边栏抽屉控制 =====
   document.getElementById("sidebar-toggle-btn").addEventListener("click", openSidebarDrawer);
   document.getElementById("close-sidebar").addEventListener("click", closeSidebarDrawer);
   document.getElementById("sidebar-overlay").addEventListener("click", closeSidebarDrawer);
 
-  // 模式按钮
-  document.querySelectorAll(".mode-btn").forEach(btn => {
+  // 模式按钮（含"更多"下拉内的模式）
+  document.querySelectorAll(".mode-btn[data-mode], .mode-more-item").forEach(btn => {
     btn.addEventListener("click", () => {
       const mode = btn.dataset.mode;
+      if (!mode) return;
+      closeModeMoreMenu();
       // 清除搜索和自定义组卷
       state.searchQuery = "";
       state.customQuestions = null;
@@ -1148,6 +1251,26 @@ async function init() {
       renderSidebar();
       renderQuestion();
     });
+  });
+
+  // "更多"下拉菜单
+  document.getElementById("mode-more-trigger").addEventListener("click", (e) => {
+    e.stopPropagation();
+    document.getElementById("mode-more").classList.toggle("open");
+  });
+  document.getElementById("mode-more-menu").addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+  document.addEventListener("click", () => closeModeMoreMenu());
+
+  // 章节快捷导航按钮
+  document.getElementById("prev-chapter-btn").addEventListener("click", () => {
+    const c = getAdjacentCh(-1);
+    if (c) gotoChapter(c.ch);
+  });
+  document.getElementById("next-chapter-btn").addEventListener("click", () => {
+    const c = getAdjacentCh(1);
+    if (c) gotoChapter(c.ch);
   });
 
   document.getElementById("submit-btn").addEventListener("click", submitAnswer);

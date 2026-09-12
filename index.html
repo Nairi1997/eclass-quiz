@@ -10,19 +10,16 @@
 </head>
 <body>
 <div class="app-header">
-  <h1>综合应用能力（E类）复习题库</h1>
-  <div class="subtitle">医疗卫生类事业单位考试 · 基础医学知识</div>
-  <div class="stats-bar">
-    <div class="stat-item"><span class="num" id="stat-total">0</span><span class="label">总题数</span></div>
-    <div class="stat-item"><span class="num" id="stat-done">0</span><span class="label">已答题</span></div>
-    <div class="stat-item"><span class="num" id="stat-correct">0</span><span class="label">答对</span></div>
-    <div class="stat-item"><span class="num" id="stat-wrong">0</span><span class="label">错题</span></div>
-    <div class="stat-item"><span class="num" id="stat-rate">0%</span><span class="label">正确率</span></div>
-  </div>
-  <div class="header-tools">
-    <button class="tool-btn" id="dark-mode-btn">🌙 暗色</button>
-    <button class="tool-btn" id="settings-btn">⚙ 设置</button>
-    <button class="tool-btn danger-btn" id="header-reset-btn">🔄 重置进度</button>
+  <div class="header-row">
+    <div class="header-title">
+      <h1>综合应用能力（E类）复习题库</h1>
+      <div class="stats-line" id="stats-line">0题 · 已答 0 · 正确率 0%</div>
+    </div>
+    <div class="header-tools">
+      <button class="tool-btn" id="dark-mode-btn" title="切换深浅色">🌙</button>
+      <button class="tool-btn" id="settings-btn" title="设置">⚙</button>
+      <button class="tool-btn danger-btn" id="header-reset-btn" title="重置进度">🔄</button>
+    </div>
   </div>
 </div>
 
@@ -52,10 +49,15 @@
       <button class="mode-btn" data-mode="all">全卷混刷</button>
       <button class="mode-btn" data-mode="random">随机练习</button>
       <button class="mode-btn" data-mode="wrong">错题重做</button>
-      <button class="mode-btn" data-mode="wrong-drill">错题强化</button>
-      <button class="mode-btn" data-mode="exam">限时模考</button>
-      <button class="mode-btn" data-mode="quickcard">速查卡</button>
-      <button class="mode-btn" data-mode="fav">收藏练习</button>
+      <div class="mode-more" id="mode-more">
+        <button class="mode-btn" id="mode-more-trigger">更多 ▾</button>
+        <div class="mode-more-menu" id="mode-more-menu">
+          <button class="mode-more-item" data-mode="wrong-drill">错题强化</button>
+          <button class="mode-more-item" data-mode="exam">限时模考</button>
+          <button class="mode-more-item" data-mode="quickcard">速查卡</button>
+          <button class="mode-more-item" data-mode="fav">收藏练习</button>
+        </div>
+      </div>
     </div>
 
     <div class="exam-timer-bar" id="exam-timer-bar">
@@ -67,7 +69,6 @@
     </div>
 
     <div class="kd-switcher" id="kd-switcher"></div>
-    <div class="tag-filter-bar" id="tag-filter-bar"></div>
 
     <div class="wrong-panel" id="wrong-panel">
       <h3>错题本 <span class="count" id="wrong-panel-count"></span></h3>
@@ -88,24 +89,20 @@
             <div class="label">已收录题目</div>
           </div>
           <div class="welcome-stat">
-            <div class="num">4章</div>
-            <div class="label">已更新章节</div>
+            <div class="num" id="welcome-chapters">0</div>
+            <div class="label">收录章节</div>
           </div>
           <div class="welcome-stat">
-            <div class="num">第1篇</div>
-            <div class="label">当前进度</div>
+            <div class="num" id="welcome-parts">0</div>
+            <div class="label">覆盖学科</div>
           </div>
         </div>
         <div class="welcome-tip">
-          <strong>💡 使用说明</strong>
-          ① 点击右下角 📋 按钮打开目录导航，选择章节后自动跳转到题目<br>
-          ② 顶部支持8种练习模式：考点练习、全卷混刷、随机练习、错题重做、错题强化、限时模考、速查卡、收藏练习<br>
-          ③ 每题可点击 ☆ 收藏，解析支持展开/收起<br>
-          ④ 目录内搜索栏输入关键词可跨章节搜题，如「线粒体」<br>
-          ⑤ 智能组卷支持薄弱优先/随机/章节均衡三种策略<br>
-          ⑥ 错题强化模式：连续答对2次自动移出错题本，形成闭环<br>
-          ⑦ 右上角设置可调暗色模式、自动跳题、打乱选项等<br>
-          ⑧ 手机端支持左右滑动切题，进度自动保存本地
+          <strong>💡 快速上手</strong>
+          ① 点击右下角 📋 打开目录，选择章节/考点开始练习<br>
+          ② 错题自动进入错题本；设置中可开启自动跳题、打乱选项等<br>
+          ③ 键盘 ←/→ 切题、Enter 提交；手机端支持左右滑动切题<br>
+          ④ 进度自动保存在本浏览器，换设备前请在设置中导出备份
         </div>
       </div>
 
@@ -120,7 +117,14 @@
           <button class="action-btn primary" id="submit-btn" disabled>提交答案</button>
           <button class="action-btn secondary" id="next-btn" disabled>下一题</button>
         </div>
+        <div class="chapter-nav" id="chapter-nav">
+          <button class="chapter-nav-btn" id="prev-chapter-btn">‹ 上一章</button>
+          <div class="chapter-nav-info" id="chapter-nav-info"></div>
+          <button class="chapter-nav-btn" id="next-chapter-btn">下一章 ›</button>
+        </div>
       </div>
+
+      <div class="chapter-complete-card" id="chapter-complete-card"></div>
     </div>
   </div>
 </div>
