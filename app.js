@@ -693,8 +693,12 @@ function showResult(q, isCorrect) {
   feedback.className = "feedback show " + (isCorrect ? "correct" : "wrong");
   const correctText = correctAns.map(i => String.fromCharCode(65+i)).join("、");
 
-  // 解析分级展示：默认简版，点击展开
-  const briefExplain = q.explain.substring(0, 60) + (q.explain.length > 60 ? "..." : "");
+  // 解析分级展示：简版用纯文本（只剥离真实HTML标签），插入前重新转义，避免"<"被浏览器当作标签解析；展开后显示完整富文本
+  const plainExplain = q.explain.replace(/<\/?(strong|sub|sup|em|b|i|u|span|br)\b[^>]*>/gi, "")
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+  const needBrief = plainExplain.length > 60;
+  const escBrief = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const briefExplain = needBrief ? escBrief(plainExplain.substring(0, 60)) + "..." : q.explain;
   const isExpanded = settings.explainExpand;
 
   feedback.innerHTML = `
@@ -704,7 +708,7 @@ function showResult(q, isCorrect) {
     </div>
     <div class="feedback-explanation">
       ${isExpanded ? q.explain : briefExplain}
-      ${q.explain.length > 60 ? `<div class="explain-detail-toggle" id="explain-toggle">${isExpanded ? '收起' : '展开详情'}</div>` : ''}
+      ${needBrief ? `<div class="explain-detail-toggle" id="explain-toggle">${isExpanded ? '收起' : '展开详情'}</div>` : ''}
     </div>
     ${state.errorReports[q.id] ? `<div class="report-note">您的备注：${(state.errorReports[q.id].note || '').replace(/</g,'&lt;')}</div>` : ''}
   `;

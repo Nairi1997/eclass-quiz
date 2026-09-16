@@ -19386,7 +19386,7 @@
       "三者通透性相同"
     ],
     "ans": 0,
-    "explain": "毛细血管通透性从低到高依次为：<strong>连续毛细血管 < 有孔毛细血管 < 血窦</strong>。"
+    "explain": "毛细血管通透性从低到高依次为：<strong>连续毛细血管 &lt; 有孔毛细血管 &lt; 血窦</strong>。"
   },
   {
     "id": 6528,
@@ -21726,7 +21726,7 @@
       "15%"
     ],
     "ans": 0,
-    "explain": "一次性急性失血<strong><10%</strong>对人体无显著影响；<strong>>20%</strong>机体进入失代偿期；<strong>>30%</strong>危及生命。"
+    "explain": "一次性急性失血<strong>&lt;10%</strong>对人体无显著影响；<strong>&gt;20%</strong>机体进入失代偿期；<strong>&gt;30%</strong>危及生命。"
   },
   {
     "id": 6658,
@@ -21744,7 +21744,7 @@
       "15%"
     ],
     "ans": 0,
-    "explain": "一次性急性失血<strong>>20%</strong>机体进入失代偿期；<strong>>30%</strong>危及生命；<strong><10%</strong>对人体无显著影响。"
+    "explain": "一次性急性失血<strong>&gt;20%</strong>机体进入失代偿期；<strong>&gt;30%</strong>危及生命；<strong>&lt;10%</strong>对人体无显著影响。"
   },
   {
     "id": 6659,
@@ -22590,7 +22590,7 @@
       "房室瓣开，动脉瓣开，血液流动"
     ],
     "ans": 0,
-    "explain": "<strong>等容收缩期</strong>：房内压 < 室内压 < 动脉压，<strong>房室瓣关，动脉瓣关</strong>，血液不流，存于心室。"
+    "explain": "<strong>等容收缩期</strong>：房内压 &lt; 室内压 &lt; 动脉压，<strong>房室瓣关，动脉瓣关</strong>，血液不流，存于心室。"
   },
   {
     "id": 6706,
@@ -22608,7 +22608,7 @@
       "房内压 > 室内压 > 动脉压"
     ],
     "ans": 0,
-    "explain": "<strong>快速射血期</strong>：房内压 < 室内压 > 动脉压，房室瓣关，动脉瓣开，血液从心室流向动脉。"
+    "explain": "<strong>快速射血期</strong>：房内压 &lt; 室内压 &gt; 动脉压，房室瓣关，动脉瓣开，血液从心室流向动脉。"
   },
   {
     "id": 6707,
@@ -22626,7 +22626,7 @@
       "房室瓣开，动脉瓣开，血液流动"
     ],
     "ans": 0,
-    "explain": "<strong>快速充盈期、减慢充盈期和心房收缩期</strong>的共同特点：房内压 > 室内压 < 动脉压，<strong>房室瓣开，动脉瓣关</strong>，血液从心房流向心室。"
+    "explain": "<strong>快速充盈期、减慢充盈期和心房收缩期</strong>的共同特点：房内压 &gt; 室内压 &lt; 动脉压，<strong>房室瓣开，动脉瓣关</strong>，血液从心房流向心室。"
   },
   {
     "id": 6708,
@@ -24498,7 +24498,7 @@
       "肺泡 > 组织 > 动脉血 > 混合静脉血"
     ],
     "ans": 0,
-    "explain": "PO₂由高到低：<strong>肺泡 > 动脉血 > 混合静脉血 > 组织</strong>。PCO₂由高到低：组织 > 混合静脉血 > 动脉血 > 肺泡。"
+    "explain": "PO₂由高到低：<strong>肺泡 &gt; 动脉血 &gt; 混合静脉血 &gt; 组织</strong>。PCO₂由高到低：组织 &gt; 混合静脉血 &gt; 动脉血 &gt; 肺泡。"
   },
   {
     "id": 6812,
@@ -24534,7 +24534,7 @@
       "正常现象"
     ],
     "ans": 0,
-    "explain": "V/Q > 0.84提示<strong>通气过剩或血流不足</strong>，部分肺泡未能与血液充分交换，相当于<strong>肺泡无效腔增大</strong>。"
+    "explain": "V/Q &gt; 0.84提示<strong>通气过剩或血流不足</strong>，部分肺泡未能与血液充分交换，相当于<strong>肺泡无效腔增大</strong>。"
   },
   {
     "id": 6814,
@@ -24552,7 +24552,7 @@
       "正常现象"
     ],
     "ans": 0,
-    "explain": "V/Q < 0.84提示<strong>通气不足或血流过剩</strong>，犹如发生了<strong>功能性动-静脉短路</strong>。两种情况都妨碍有效气体交换。"
+    "explain": "V/Q &lt; 0.84提示<strong>通气不足或血流过剩</strong>，犹如发生了<strong>功能性动-静脉短路</strong>。两种情况都妨碍有效气体交换。"
   },
   {
     "id": 6815,
@@ -25182,7 +25182,7 @@
       "混合食物"
     ],
     "ans": 0,
-    "explain": "刺激胆汁分泌作用由强到弱：<strong>高蛋白食物</strong> > 高脂肪食物和混合食物 > 糖类食物。"
+    "explain": "刺激胆汁分泌作用由强到弱：<strong>高蛋白食物</strong> &gt; 高脂肪食物和混合食物 &gt; 糖类食物。"
   },
   {
     "id": 6850,
@@ -27216,7 +27216,7 @@
       "对代谢无影响"
     ],
     "ans": 0,
-    "explain": "TH对物质代谢具有<strong>双向性</strong>：①糖代谢既能升血糖（促吸收/糖异生/肝糖原分解）也能降血糖（促外周利用）；②脂肪：分解>合成；③胆固醇：清除>合成；④蛋白质：生理量促合成，高浓度促分解。"
+    "explain": "TH对物质代谢具有<strong>双向性</strong>：①糖代谢既能升血糖（促吸收/糖异生/肝糖原分解）也能降血糖（促外周利用）；②脂肪：分解&gt;合成；③胆固醇：清除&gt;合成；④蛋白质：生理量促合成，高浓度促分解。"
   },
   {
     "id": 6963,
@@ -28350,7 +28350,7 @@
       "VLDL < CM < LDL < HDL；CM"
     ],
     "ans": 0,
-    "explain": "密度低到高：<strong>CM < VLDL < LDL < HDL</strong>。<strong>HDL</strong>从肝外向肝内转运胆固醇。LDL从肝内向肝外转运胆固醇。"
+    "explain": "密度低到高：<strong>CM &lt; VLDL &lt; LDL &lt; HDL</strong>。<strong>HDL</strong>从肝外向肝内转运胆固醇。LDL从肝内向肝外转运胆固醇。"
   },
   {
     "id": 7026,
@@ -28386,7 +28386,7 @@
       "谷氨酸->腐胺；色氨酸->组胺"
     ],
     "ans": 0,
-    "explain": "脱羧产物：①<strong>谷氨酸->GABA</strong>（抑制性神经递质）②<strong>色氨酸->5-羟色胺</strong> ③<strong>组氨酸->组胺</strong> ④<strong>鸟氨酸->腐胺->亚精胺->精胺</strong>。"
+    "explain": "脱羧产物：①<strong>谷氨酸-&gt;GABA</strong>（抑制性神经递质）②<strong>色氨酸-&gt;5-羟色胺</strong> ③<strong>组氨酸-&gt;组胺</strong> ④<strong>鸟氨酸-&gt;腐胺-&gt;亚精胺-&gt;精胺</strong>。"
   },
   {
     "id": 7028,
@@ -28458,7 +28458,7 @@
       "b-丙氨酸；黄嘌呤氧化酶；痛风"
     ],
     "ans": 0,
-    "explain": "嘌呤分解终产物为<strong>尿酸</strong>，关键酶<strong>黄嘌呤氧化酶</strong>。活性过高->尿酸沉积-><strong>痛风</strong>。<strong>别嘌呤醇</strong>抑制该酶治痛风。"
+    "explain": "嘌呤分解终产物为<strong>尿酸</strong>，关键酶<strong>黄嘌呤氧化酶</strong>。活性过高-&gt;尿酸沉积-&gt;<strong>痛风</strong>。<strong>别嘌呤醇</strong>抑制该酶治痛风。"
   },
   {
     "id": 7032,
@@ -28512,7 +28512,7 @@
       "两者都不连续复制"
     ],
     "ans": 0,
-    "explain": "<strong>前导链</strong>沿5'->3'方向<strong>连续复制</strong>；<strong>后随链</strong>沿与解链相反方向<strong>不连续复制</strong>，合成多段DNA片段称<strong>冈崎片段</strong>。"
+    "explain": "<strong>前导链</strong>沿5'-&gt;3'方向<strong>连续复制</strong>；<strong>后随链</strong>沿与解链相反方向<strong>不连续复制</strong>，合成多段DNA片段称<strong>冈崎片段</strong>。"
   },
   {
     "id": 7035,
@@ -28764,7 +28764,7 @@
       "简并性"
     ],
     "ans": 0,
-    "explain": "遗传密码5大特点：①<strong>方向性</strong>（5'->3'）②<strong>连续性</strong>（无间隔）③<strong>简并性</strong>（61个密码子编码20种氨基酸）④<strong>摆动性</strong> ⑤<strong>通用性</strong>。<strong>重叠性不属于</strong>密码特点。"
+    "explain": "遗传密码5大特点：①<strong>方向性</strong>（5'-&gt;3'）②<strong>连续性</strong>（无间隔）③<strong>简并性</strong>（61个密码子编码20种氨基酸）④<strong>摆动性</strong> ⑤<strong>通用性</strong>。<strong>重叠性不属于</strong>密码特点。"
   },
   {
     "id": 7049,
@@ -29736,7 +29736,7 @@
       "IFN-γ抗病毒作用强于免疫调节作用"
     ],
     "ans": 0,
-    "explain": "干扰素（IFN）是糖蛋白，有<strong>广谱抗病毒作用但只能抑制病毒复制而无杀灭作用</strong>，有<strong>种属特异性</strong>。Ⅰ型（IFN-α由白细胞产生、IFN-β由成纤维细胞产生）：<strong>抗病毒>免疫调节</strong>。Ⅱ型（IFN-γ由T细胞和NK细胞产生）：<strong>免疫调节>抗病毒</strong>，是Th1反应组分。"
+    "explain": "干扰素（IFN）是糖蛋白，有<strong>广谱抗病毒作用但只能抑制病毒复制而无杀灭作用</strong>，有<strong>种属特异性</strong>。Ⅰ型（IFN-α由白细胞产生、IFN-β由成纤维细胞产生）：<strong>抗病毒&gt;免疫调节</strong>。Ⅱ型（IFN-γ由T细胞和NK细胞产生）：<strong>免疫调节&gt;抗病毒</strong>，是Th1反应组分。"
   },
   {
     "id": 7103,
@@ -32598,7 +32598,7 @@
       "舌下给药 > 气雾吸入 > 腹腔注射 > 口服 > 肌内注射 > 皮下注射 > 直肠给药 > 皮肤给药"
     ],
     "ans": 0,
-    "explain": "不同给药途径吸收速率的一般规律：<strong>气雾吸入 > 腹腔注射 > 舌下给药 > 肌内注射 > 皮下注射 > 口服 > 直肠给药 > 皮肤给药</strong>。"
+    "explain": "不同给药途径吸收速率的一般规律：<strong>气雾吸入 &gt; 腹腔注射 &gt; 舌下给药 &gt; 肌内注射 &gt; 皮下注射 &gt; 口服 &gt; 直肠给药 &gt; 皮肤给药</strong>。"
   },
   {
     "id": 7262,
