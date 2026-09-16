@@ -227,22 +227,6 @@ function gotoChapter(chId) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function updateChapterNav(questions) {
-  const nav = document.getElementById("chapter-nav");
-  if (!nav) return;
-  const chMode = (state.mode === "chapter" || state.mode === "random" || state.mode === "quickcard")
-    && !state.searchQuery && !state.customQuestions;
-  const cur = CHAPTER_ORDER.find(c => c.ch === state.filterCh);
-  if (!chMode || !cur) { nav.style.display = "none"; return; }
-  nav.style.display = "flex";
-  const prevCh = getAdjacentCh(-1);
-  const nextCh = getAdjacentCh(1);
-  document.getElementById("prev-chapter-btn").disabled = !prevCh;
-  document.getElementById("next-chapter-btn").disabled = !nextCh;
-  const n = (questions || []).length;
-  document.getElementById("chapter-nav-info").textContent = n ? `当前 ${cur.title} · 共 ${n} 题` : cur.title;
-}
-
 function showChapterComplete() {
   const el = document.getElementById("chapter-complete-card");
   if (!el) return;
@@ -542,7 +526,6 @@ function renderQuestion() {
     card.style.display = "none";
     welcome.style.display = "block";
     dotsArea.innerHTML = "";
-    updateChapterNav([]);
     return;
   }
 
@@ -647,7 +630,6 @@ function renderQuestion() {
   } else {
     document.getElementById("submit-btn").textContent = "提交答案";
   }
-  updateChapterNav(questions);
 }
 
 function renderQuickCard(questions) {
@@ -657,7 +639,6 @@ function renderQuickCard(questions) {
   if (questions.length === 0) {
     card.style.display = "none";
     welcome.style.display = "block";
-    updateChapterNav([]);
     return;
   }
   card.style.display = "block";
@@ -692,7 +673,6 @@ function renderQuickCard(questions) {
   document.getElementById("prev-btn").disabled = state.currentIdx === 0;
   document.getElementById("submit-btn").style.display = "none";
   updateNextBtn(questions);
-  updateChapterNav(questions);
 }
 
 function showResult(q, isCorrect) {
@@ -1325,16 +1305,7 @@ async function init() {
   });
   document.addEventListener("click", () => closeModeMoreMenu());
 
-  // 章节快捷导航按钮
-  document.getElementById("prev-chapter-btn").addEventListener("click", () => {
-    const c = getAdjacentCh(-1);
-    if (c) gotoChapter(c.ch);
-  });
-  document.getElementById("next-chapter-btn").addEventListener("click", () => {
-    const c = getAdjacentCh(1);
-    if (c) gotoChapter(c.ch);
-  });
-
+  // 章节快捷导航按钮（已移除：刷题流可自动流转章节）
   document.getElementById("submit-btn").addEventListener("click", submitAnswer);
   document.getElementById("next-btn").addEventListener("click", nextQuestion);
   document.getElementById("prev-btn").addEventListener("click", prevQuestion);
