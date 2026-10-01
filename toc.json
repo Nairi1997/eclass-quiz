@@ -665,7 +665,8 @@
           {
             "ch": "cp3ch8",
             "title": "第八章 创伤、烧伤与犬咬伤",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 32
           },
           {
             "ch": "cp3ch9",
