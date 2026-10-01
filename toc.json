@@ -510,17 +510,17 @@
           {
             "ch": "p10ch9",
             "title": "第九章 消化系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p10ch10",
             "title": "第十章 泌尿系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p10ch11",
             "title": "第十一章 生殖系统和乳腺疾病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p10ch12",
