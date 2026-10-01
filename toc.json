@@ -554,7 +554,7 @@
           {
             "ch": "cp1ch2",
             "title": "第二章 问诊",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "cp1ch3",
