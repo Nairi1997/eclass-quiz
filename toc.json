@@ -549,7 +549,7 @@
           {
             "ch": "cp1ch1",
             "title": "第一章 临床常见症状",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "cp1ch2",
