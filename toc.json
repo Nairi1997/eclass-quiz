@@ -500,12 +500,12 @@
           {
             "ch": "p10ch7",
             "title": "第七章 心血管系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p10ch8",
             "title": "第八章 呼吸系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p10ch9",
