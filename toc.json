@@ -602,7 +602,8 @@
           {
             "ch": "cp2ch5",
             "title": "第五章 血液系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 40
           },
           {
             "ch": "cp2ch6",
