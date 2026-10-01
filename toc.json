@@ -525,12 +525,12 @@
           {
             "ch": "p10ch12",
             "title": "第十二章 神经系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p10ch13",
             "title": "第十三章 感染性疾病",
-            "hasQuestions": false
+            "hasQuestions": true
           }
         ]
       }
