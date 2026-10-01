@@ -490,12 +490,12 @@
           {
             "ch": "p10ch5",
             "title": "第五章 免疫性疾病",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p10ch6",
             "title": "第六章 肿瘤",
-            "hasQuestions": false
+            "hasQuestions": true
           },
           {
             "ch": "p10ch7",
