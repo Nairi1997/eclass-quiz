@@ -596,7 +596,8 @@
           {
             "ch": "cp2ch4",
             "title": "第四章 泌尿系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 20
           },
           {
             "ch": "cp2ch5",
