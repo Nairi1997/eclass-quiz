@@ -608,7 +608,8 @@
           {
             "ch": "cp2ch6",
             "title": "第六章 内分泌系统及代谢性疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 41
           },
           {
             "ch": "cp2ch7",
