@@ -660,7 +660,8 @@
      {
       "ch": "cp3ch6",
       "title": "第六章 外科休克与输血",
-      "hasQuestions": false
+      "hasQuestions": true,
+      "count": 40
      },
      {
       "ch": "cp3ch7",
