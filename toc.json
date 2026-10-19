@@ -708,7 +708,8 @@
      {
       "ch": "cp3ch14",
       "title": "第十四章 小肠、阑尾疾病",
-      "hasQuestions": false
+      "hasQuestions": true,
+      "count": 32
      },
      {
       "ch": "cp3ch15",
