@@ -636,7 +636,8 @@
           {
             "ch": "cp3ch2",
             "title": "第二章 围术期处理",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 30
           },
           {
             "ch": "cp3ch3",

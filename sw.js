@@ -1,4 +1,4 @@
-const CACHE_NAME = "eclass-quiz-v59";
+const CACHE_NAME = "eclass-quiz-v60";
 const ASSETS = ["./index.html", "./styles.css", "./app.js", "./manifest.json"];
 
 self.addEventListener("install", (e) => {
