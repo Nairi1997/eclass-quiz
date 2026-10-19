@@ -732,7 +732,8 @@
           {
             "ch": "cp3ch18",
             "title": "第十八章 骨折",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 49
           },
           {
             "ch": "cp3ch19",
