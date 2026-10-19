@@ -642,7 +642,8 @@
           {
             "ch": "cp3ch3",
             "title": "第三章 麻醉",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 25
           },
           {
             "ch": "cp3ch4",
