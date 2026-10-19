@@ -648,7 +648,8 @@
           {
             "ch": "cp3ch4",
             "title": "第四章 营养治疗",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 16
           },
           {
             "ch": "cp3ch5",
