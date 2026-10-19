@@ -666,7 +666,8 @@
      {
       "ch": "cp3ch7",
       "title": "第七章 外科感染",
-      "hasQuestions": false
+      "hasQuestions": true,
+      "count": 22
      },
      {
       "ch": "cp3ch8",
