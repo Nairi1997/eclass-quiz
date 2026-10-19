@@ -690,7 +690,8 @@
      {
       "ch": "cp3ch11",
       "title": "第十一章 胸部损伤",
-      "hasQuestions": false
+      "hasQuestions": true,
+      "count": 26
      },
      {
       "ch": "cp3ch12",
