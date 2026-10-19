@@ -696,7 +696,8 @@
      {
       "ch": "cp3ch12",
       "title": "第十二章 腹部疾病",
-      "hasQuestions": false
+      "hasQuestions": true,
+      "count": 36
      },
      {
       "ch": "cp3ch13",
