@@ -630,7 +630,8 @@
           {
             "ch": "cp3ch1",
             "title": "第一章 无菌术",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 17
           },
           {
             "ch": "cp3ch2",
