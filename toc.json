@@ -738,7 +738,8 @@
           {
             "ch": "cp3ch19",
             "title": "第十九章 颈椎病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 15
           },
           {
             "ch": "cp3ch20",
