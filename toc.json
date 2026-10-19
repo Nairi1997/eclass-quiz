@@ -684,7 +684,8 @@
      {
       "ch": "cp3ch10",
       "title": "第十章 乳房疾病",
-      "hasQuestions": false
+      "hasQuestions": true,
+      "count": 28
      },
      {
       "ch": "cp3ch11",
