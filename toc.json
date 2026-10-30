@@ -757,7 +757,8 @@
           {
             "ch": "cp4ch1",
             "title": "第一章 生长发育",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 38
           },
           {
             "ch": "cp4ch2",
