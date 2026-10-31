@@ -793,7 +793,8 @@
           {
             "ch": "cp4ch7",
             "title": "第七章 感染性疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 32
           },
           {
             "ch": "cp4ch8",
