@@ -823,7 +823,8 @@
           {
             "ch": "cp4ch12",
             "title": "第十二章 造血系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 18
           },
           {
             "ch": "cp4ch13",
