@@ -769,7 +769,8 @@
           {
             "ch": "cp4ch3",
             "title": "第三章 营养和营养障碍疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 44
           },
           {
             "ch": "cp4ch4",
