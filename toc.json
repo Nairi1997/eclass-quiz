@@ -811,7 +811,8 @@
           {
             "ch": "cp4ch10",
             "title": "第十章 心血管系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 16
           },
           {
             "ch": "cp4ch11",
