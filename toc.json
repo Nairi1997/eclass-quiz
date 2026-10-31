@@ -763,7 +763,8 @@
           {
             "ch": "cp4ch2",
             "title": "第二章 儿童保健",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 24
           },
           {
             "ch": "cp4ch3",
