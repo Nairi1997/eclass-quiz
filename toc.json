@@ -781,7 +781,8 @@
           {
             "ch": "cp4ch5",
             "title": "第五章 免疫性疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 25
           },
           {
             "ch": "cp4ch6",
