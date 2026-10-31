@@ -835,7 +835,8 @@
           {
             "ch": "cp4ch14",
             "title": "第十四章 内分泌系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 16
           }
         ]
       },
