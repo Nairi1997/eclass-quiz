@@ -829,7 +829,8 @@
           {
             "ch": "cp4ch13",
             "title": "第十三章 神经系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 20
           },
           {
             "ch": "cp4ch14",
