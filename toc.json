@@ -775,7 +775,8 @@
           {
             "ch": "cp4ch4",
             "title": "第四章 新生儿与新生儿疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 58
           },
           {
             "ch": "cp4ch5",
