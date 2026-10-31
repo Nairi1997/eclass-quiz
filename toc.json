@@ -787,7 +787,8 @@
           {
             "ch": "cp4ch6",
             "title": "第六章 遗传性疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 19
           },
           {
             "ch": "cp4ch7",
