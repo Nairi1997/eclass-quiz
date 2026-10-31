@@ -817,7 +817,8 @@
           {
             "ch": "cp4ch11",
             "title": "第十一章 泌尿系统疾病",
-            "hasQuestions": false
+            "hasQuestions": true,
+            "count": 24
           },
           {
             "ch": "cp4ch12",
